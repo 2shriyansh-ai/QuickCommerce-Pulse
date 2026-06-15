@@ -157,13 +157,4 @@ These limitations are intentionally visible in code, dashboard, and docs.
 
 ---
 
-<div align="center">
-  <sub>Built with real data · Documented limitations · No synthetic shortcuts</sub>
-</div>
-```
 
-**To paste on GitHub:**
-1. Go to your repo → click `README.md` → hit the ✏️ pencil (edit) icon
-2. Select all existing content and delete it
-3. Paste the above
-4. Click **Commit changes**
