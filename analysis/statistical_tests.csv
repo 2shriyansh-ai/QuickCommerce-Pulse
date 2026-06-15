@@ -1,0 +1,4 @@
+test,method,statistic,p_value,effect_min,conclusion
+Rainy vs clear delivery time,Welch two-sample t-test,3.567784542300101,0.00040930079303845335,6.6441176470588275,Statistically significant
+Traffic-level delivery time,One-way ANOVA,19.7513383477373,3.86970694692821e-09,11.92198910551219,Statistically significant
+Courier experience relationship,Pearson correlation,-0.08911146022623898,0.0048017783049271335,-0.08911146022623898,Statistically significant
