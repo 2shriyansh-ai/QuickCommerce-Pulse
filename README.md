@@ -1,6 +1,4 @@
 
-
-```markdown
 <div align="center">
   <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=700&size=32&pause=1000&color=F97316&center=true&vCenter=true&width=600&lines=QuickCommerce+Pulse+%F0%9F%9B%B5;Delivery+Intelligence+Platform" alt="Typing SVG" />
 
