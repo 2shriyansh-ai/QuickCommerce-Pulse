@@ -1,0 +1,81 @@
+restaurant_id,name,area,city,latitude,longitude,cuisine_type,avg_rating,total_ratings,avg_order_value,monthly_decline_factor
+R001,Deccan Kitchen,Gachibowli,Hyderabad,17.43155,78.344851,Biryani,4.25,2008,260,0.0014
+R002,Nizam's House,Gachibowli,Hyderabad,17.447159,78.341465,South Indian,4.29,3636,200,-0.0431
+R003,Charminar Express,Gachibowli,Hyderabad,17.440196,78.340378,North Indian,3.79,1808,630,-0.0041
+R004,Metro Cafe,Gachibowli,Hyderabad,17.435068,78.350507,Chinese,4.15,6810,180,0.0028
+R005,Spice Route Biryani Co.,Gachibowli,Hyderabad,17.438707,78.344902,Fast Food,3.73,1943,660,-0.0238
+R006,Urban Tadka Foods,Gachibowli,Hyderabad,17.432841,78.355155,Healthy,3.65,5125,340,0.0058
+R007,Pearl Corner,Gachibowli,Hyderabad,17.440752,78.357416,Desserts,4.35,3280,230,-0.0102
+R008,Minerva Kitchen,Gachibowli,Hyderabad,17.442233,78.355411,Cafe,4.46,4909,300,-0.0006
+R009,Nizam's Kitchen,Madhapur,Hyderabad,17.443402,78.387709,Chinese,3.6,833,320,0.0096
+R010,Charminar House,Madhapur,Hyderabad,17.447461,78.397514,Fast Food,3.97,1512,410,-0.0226
+R011,Metro Express,Madhapur,Hyderabad,17.451933,78.394804,Healthy,4.29,764,560,-0.005
+R012,Spice Route Cafe,Madhapur,Hyderabad,17.443707,78.390821,Desserts,4.14,2391,580,-0.0016
+R013,Urban Tadka Biryani Co.,Madhapur,Hyderabad,17.445137,78.39633,Cafe,3.79,638,320,0.0068
+R014,Pearl Foods,Madhapur,Hyderabad,17.446521,78.383691,Pizza,4.44,7660,540,0.0102
+R015,Minerva Corner,Madhapur,Hyderabad,17.451098,78.389621,Multi-cuisine,3.9,7671,590,-0.0161
+R016,Bowl Company Kitchen,Madhapur,Hyderabad,17.443739,78.392605,Biryani,3.84,2332,650,-0.0082
+R017,Charminar Kitchen,HITEC City,Hyderabad,17.441689,78.372148,Desserts,4.54,1313,500,-0.0139
+R018,Metro House,HITEC City,Hyderabad,17.45,78.370951,Cafe,4.38,1490,680,-0.0021
+R019,Spice Route Express,HITEC City,Hyderabad,17.441426,78.378926,Pizza,4.21,4014,510,-0.0292
+R020,Urban Tadka Cafe,HITEC City,Hyderabad,17.451464,78.380445,Multi-cuisine,4.16,1118,610,0.0107
+R021,Pearl Biryani Co.,HITEC City,Hyderabad,17.448335,78.374323,Biryani,4.38,2584,450,-0.035
+R022,Minerva Foods,HITEC City,Hyderabad,17.447498,78.381154,South Indian,3.55,8141,500,0.003
+R023,Bowl Company Corner,HITEC City,Hyderabad,17.436415,78.379455,North Indian,4.11,7074,580,-0.013
+R024,Daily Kitchen Kitchen,HITEC City,Hyderabad,17.44123,78.371108,Chinese,3.77,7991,670,0.0131
+R025,Metro Kitchen,Banjara Hills,Hyderabad,17.417381,78.434495,Multi-cuisine,4.56,1096,410,0.0104
+R026,Spice Route House,Banjara Hills,Hyderabad,17.412135,78.426743,Biryani,4.46,7372,540,0.0147
+R027,Urban Tadka Express,Banjara Hills,Hyderabad,17.415348,78.426946,South Indian,3.64,6410,520,0.0032
+R028,Pearl Cafe,Banjara Hills,Hyderabad,17.415155,78.435596,North Indian,3.69,2351,510,0.01
+R029,Minerva Biryani Co.,Banjara Hills,Hyderabad,17.410412,78.435407,Chinese,4.02,6159,620,-0.0323
+R030,Bowl Company Foods,Banjara Hills,Hyderabad,17.424513,78.437398,Fast Food,3.89,3768,510,-0.0166
+R031,Daily Kitchen Corner,Banjara Hills,Hyderabad,17.407752,78.426079,Healthy,3.82,4717,320,-0.0079
+R032,Green Fork Kitchen,Banjara Hills,Hyderabad,17.419341,78.42676,Desserts,3.56,732,200,0.0092
+R033,Spice Route Kitchen,Jubilee Hills,Hyderabad,17.427884,78.410142,North Indian,3.63,1935,520,-0.0367
+R034,Urban Tadka House,Jubilee Hills,Hyderabad,17.433879,78.406608,Chinese,4.58,6607,480,0.0059
+R035,Pearl Express,Jubilee Hills,Hyderabad,17.425345,78.405859,Fast Food,3.76,3649,440,-0.0156
+R036,Minerva Cafe,Jubilee Hills,Hyderabad,17.435721,78.415815,Healthy,4.35,986,210,-0.0196
+R037,Bowl Company Biryani Co.,Jubilee Hills,Hyderabad,17.43911,78.402576,Desserts,3.92,1738,520,-0.0167
+R038,Daily Kitchen Foods,Jubilee Hills,Hyderabad,17.428614,78.402597,Cafe,4.01,7743,220,-0.0171
+R039,Green Fork Corner,Jubilee Hills,Hyderabad,17.433506,78.399011,Pizza,4.5,4608,710,-0.0441
+R040,Cafe 45 Kitchen,Jubilee Hills,Hyderabad,17.437164,78.402355,Multi-cuisine,3.65,3509,490,-0.0147
+R041,Urban Tadka Kitchen,Kukatpally,Hyderabad,17.502044,78.393563,Healthy,4.5,197,420,-0.0283
+R042,Pearl House,Kukatpally,Hyderabad,17.49399,78.398214,Desserts,4.41,8022,640,0.0177
+R043,Minerva Express,Kukatpally,Hyderabad,17.498731,78.393386,Cafe,4.16,2610,310,0.016
+R044,Bowl Company Cafe,Kukatpally,Hyderabad,17.49556,78.404064,Pizza,4.19,648,210,-0.0082
+R045,Daily Kitchen Biryani Co.,Kukatpally,Hyderabad,17.501149,78.393434,Multi-cuisine,4.1,8050,500,-0.04
+R046,Green Fork Foods,Kukatpally,Hyderabad,17.496511,78.402754,Biryani,3.75,2106,430,-0.0374
+R047,Cafe 45 Corner,Kukatpally,Hyderabad,17.490232,78.401301,South Indian,4.53,5253,230,-0.0186
+R048,Deccan Kitchen,Kukatpally,Hyderabad,17.49521,78.407425,North Indian,4.19,1853,600,0.0001
+R049,Pearl Kitchen,Kondapur,Hyderabad,17.467924,78.36449,Pizza,3.81,2637,470,-0.0251
+R050,Minerva House,Kondapur,Hyderabad,17.462106,78.360649,Multi-cuisine,4.38,4792,240,-0.0404
+R051,Bowl Company Express,Kondapur,Hyderabad,17.465574,78.369199,Biryani,3.78,7396,220,0.0104
+R052,Daily Kitchen Cafe,Kondapur,Hyderabad,17.463639,78.367407,South Indian,3.96,5943,370,-0.0065
+R053,Green Fork Biryani Co.,Kondapur,Hyderabad,17.472572,78.352541,North Indian,4.64,6873,530,-0.0261
+R054,Cafe 45 Foods,Kondapur,Hyderabad,17.477701,78.354817,Chinese,4.28,1125,240,0.0018
+R055,Deccan Corner,Kondapur,Hyderabad,17.465872,78.356191,Fast Food,3.72,2988,310,-0.0017
+R056,Nizam's Kitchen,Kondapur,Hyderabad,17.469897,78.35692,Healthy,4.49,7619,210,-0.0392
+R057,Minerva Kitchen,Ameerpet,Hyderabad,17.43348,78.439364,South Indian,4.02,6497,260,-0.0049
+R058,Bowl Company House,Ameerpet,Hyderabad,17.441842,78.44923,North Indian,3.84,3683,530,-0.0444
+R059,Daily Kitchen Express,Ameerpet,Hyderabad,17.444396,78.455571,Chinese,3.63,4649,200,0.0076
+R060,Green Fork Cafe,Ameerpet,Hyderabad,17.431166,78.441594,Fast Food,4.19,2705,410,0.0116
+R061,Cafe 45 Biryani Co.,Ameerpet,Hyderabad,17.443993,78.455481,Healthy,4.43,1900,610,-0.0293
+R062,Deccan Foods,Ameerpet,Hyderabad,17.442542,78.455214,Desserts,3.66,3509,570,0.0022
+R063,Nizam's Corner,Ameerpet,Hyderabad,17.432761,78.442225,Cafe,4.57,6732,690,-0.0338
+R064,Charminar Kitchen,Ameerpet,Hyderabad,17.431728,78.455941,Pizza,4.0,6589,440,0.0055
+R065,Bowl Company Kitchen,Begumpet,Hyderabad,17.450493,78.462203,Fast Food,4.5,6630,620,-0.0382
+R066,Daily Kitchen House,Begumpet,Hyderabad,17.451355,78.461404,Healthy,4.51,6869,470,-0.023
+R067,Green Fork Express,Begumpet,Hyderabad,17.451584,78.461413,Desserts,4.45,5586,300,-0.0199
+R068,Cafe 45 Cafe,Begumpet,Hyderabad,17.43715,78.47132,Cafe,3.86,3056,590,-0.0129
+R069,Deccan Biryani Co.,Begumpet,Hyderabad,17.451086,78.463361,Pizza,4.3,406,250,0.0103
+R070,Nizam's Foods,Begumpet,Hyderabad,17.446351,78.475104,Multi-cuisine,3.84,493,240,-0.0074
+R071,Charminar Corner,Begumpet,Hyderabad,17.450056,78.465255,Biryani,3.93,4369,250,-0.0207
+R072,Metro Kitchen,Begumpet,Hyderabad,17.440485,78.470158,South Indian,4.18,193,510,0.0133
+R073,Daily Kitchen Kitchen,Secunderabad,Hyderabad,17.44385,78.502655,Cafe,4.14,5673,300,-0.0221
+R074,Green Fork House,Secunderabad,Hyderabad,17.442856,78.495244,Pizza,3.63,2751,600,0.0084
+R075,Cafe 45 Express,Secunderabad,Hyderabad,17.436306,78.494867,Multi-cuisine,4.34,3525,380,-0.0196
+R076,Deccan Cafe,Secunderabad,Hyderabad,17.433191,78.496868,Biryani,3.88,7883,420,-0.0023
+R077,Nizam's Biryani Co.,Secunderabad,Hyderabad,17.441979,78.494717,South Indian,4.54,4668,710,-0.045
+R078,Charminar Foods,Secunderabad,Hyderabad,17.438638,78.49974,North Indian,3.87,5543,380,-0.0157
+R079,Metro Corner,Secunderabad,Hyderabad,17.434747,78.497817,Chinese,4.04,7562,680,0.0014
+R080,Spice Route Kitchen,Secunderabad,Hyderabad,17.436008,78.501249,Fast Food,4.27,5252,390,-0.0391

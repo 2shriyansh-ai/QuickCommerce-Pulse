@@ -1,0 +1,2473 @@
+{
+  "metadata": {
+    "city": "Hyderabad",
+    "generated_from": "Reproducible synthetic operations data",
+    "best_model": "Gradient Boosting"
+  },
+  "kpis": {
+    "total_orders": 24000,
+    "avg_delivery_time_min": 39.75,
+    "on_time_rate_pct": 53.43,
+    "avg_delay_min": 0.51,
+    "gross_order_value": 10654990.21
+  },
+  "executive_summary": "Hyderabad operations averaged 39.7 minutes with 53.4% of orders meeting the promise. Kukatpally is the highest-pressure locality at 41.5 minutes, while Cricket periods increase delivery time by 20.2% versus normal days. 11 restaurants currently require intervention, and the Gradient Boosting model explains 92.5% of delivery-time variation.",
+  "area_metrics": [
+    {
+      "restaurant_area": "Ameerpet",
+      "orders": 2173,
+      "avg_delivery_time_min": 38.68,
+      "p90_delivery_time_min": 56.9,
+      "on_time_rate_pct": 57.2,
+      "avg_delay_min": -0.31,
+      "avg_order_value": 467.02,
+      "latitude": 17.44,
+      "longitude": 78.45
+    },
+    {
+      "restaurant_area": "Banjara Hills",
+      "orders": 2243,
+      "avg_delivery_time_min": 39.13,
+      "p90_delivery_time_min": 57.9,
+      "on_time_rate_pct": 54.53,
+      "avg_delay_min": 0.08,
+      "avg_order_value": 454.74,
+      "latitude": 17.42,
+      "longitude": 78.43
+    },
+    {
+      "restaurant_area": "Begumpet",
+      "orders": 2171,
+      "avg_delivery_time_min": 39.85,
+      "p90_delivery_time_min": 59.2,
+      "on_time_rate_pct": 52.97,
+      "avg_delay_min": 0.39,
+      "avg_order_value": 409.6,
+      "latitude": 17.45,
+      "longitude": 78.47
+    },
+    {
+      "restaurant_area": "Gachibowli",
+      "orders": 2501,
+      "avg_delivery_time_min": 40.5,
+      "p90_delivery_time_min": 62.1,
+      "on_time_rate_pct": 53.94,
+      "avg_delay_min": 0.64,
+      "avg_order_value": 354.47,
+      "latitude": 17.44,
+      "longitude": 78.35
+    },
+    {
+      "restaurant_area": "HITEC City",
+      "orders": 2631,
+      "avg_delivery_time_min": 39.9,
+      "p90_delivery_time_min": 58.9,
+      "on_time_rate_pct": 49.94,
+      "avg_delay_min": 1.06,
+      "avg_order_value": 562.64,
+      "latitude": 17.44,
+      "longitude": 78.38
+    },
+    {
+      "restaurant_area": "Jubilee Hills",
+      "orders": 2432,
+      "avg_delivery_time_min": 38.04,
+      "p90_delivery_time_min": 55.3,
+      "on_time_rate_pct": 56.95,
+      "avg_delay_min": -0.51,
+      "avg_order_value": 455.36,
+      "latitude": 17.43,
+      "longitude": 78.41
+    },
+    {
+      "restaurant_area": "Kondapur",
+      "orders": 2429,
+      "avg_delivery_time_min": 39.51,
+      "p90_delivery_time_min": 58.0,
+      "on_time_rate_pct": 55.04,
+      "avg_delay_min": 0.1,
+      "avg_order_value": 330.69,
+      "latitude": 17.47,
+      "longitude": 78.36
+    },
+    {
+      "restaurant_area": "Kukatpally",
+      "orders": 2498,
+      "avg_delivery_time_min": 41.54,
+      "p90_delivery_time_min": 63.6,
+      "on_time_rate_pct": 48.44,
+      "avg_delay_min": 1.88,
+      "avg_order_value": 423.06,
+      "latitude": 17.5,
+      "longitude": 78.4
+    },
+    {
+      "restaurant_area": "Madhapur",
+      "orders": 2557,
+      "avg_delivery_time_min": 39.11,
+      "p90_delivery_time_min": 57.34,
+      "on_time_rate_pct": 52.44,
+      "avg_delay_min": 0.69,
+      "avg_order_value": 492.79,
+      "latitude": 17.45,
+      "longitude": 78.39
+    },
+    {
+      "restaurant_area": "Secunderabad",
+      "orders": 2365,
+      "avg_delivery_time_min": 41.04,
+      "p90_delivery_time_min": 67.2,
+      "on_time_rate_pct": 53.74,
+      "avg_delay_min": 0.82,
+      "avg_order_value": 480.55,
+      "latitude": 17.44,
+      "longitude": 78.5
+    }
+  ],
+  "event_metrics": [
+    {
+      "period_type": "Cricket",
+      "orders": 270,
+      "avg_delivery_time_min": 47.54,
+      "on_time_rate_pct": 28.15,
+      "avg_delay_min": 7.76
+    },
+    {
+      "period_type": "Festival",
+      "orders": 344,
+      "avg_delivery_time_min": 47.12,
+      "on_time_rate_pct": 24.71,
+      "avg_delay_min": 7.87
+    },
+    {
+      "period_type": "Normal Day",
+      "orders": 23386,
+      "avg_delivery_time_min": 39.55,
+      "on_time_rate_pct": 54.14,
+      "avg_delay_min": 0.31
+    }
+  ],
+  "hourly_metrics": [
+    {
+      "restaurant_area": "Ameerpet",
+      "order_hour": 0,
+      "orders": 14,
+      "avg_delivery_time_min": 38.67,
+      "on_time_rate_pct": 71.43
+    },
+    {
+      "restaurant_area": "Ameerpet",
+      "order_hour": 1,
+      "orders": 15,
+      "avg_delivery_time_min": 35.09,
+      "on_time_rate_pct": 80.0
+    },
+    {
+      "restaurant_area": "Ameerpet",
+      "order_hour": 2,
+      "orders": 11,
+      "avg_delivery_time_min": 34.38,
+      "on_time_rate_pct": 72.73
+    },
+    {
+      "restaurant_area": "Ameerpet",
+      "order_hour": 3,
+      "orders": 18,
+      "avg_delivery_time_min": 32.59,
+      "on_time_rate_pct": 83.33
+    },
+    {
+      "restaurant_area": "Ameerpet",
+      "order_hour": 4,
+      "orders": 12,
+      "avg_delivery_time_min": 37.9,
+      "on_time_rate_pct": 41.67
+    },
+    {
+      "restaurant_area": "Ameerpet",
+      "order_hour": 5,
+      "orders": 32,
+      "avg_delivery_time_min": 37.41,
+      "on_time_rate_pct": 65.62
+    },
+    {
+      "restaurant_area": "Ameerpet",
+      "order_hour": 6,
+      "orders": 58,
+      "avg_delivery_time_min": 34.37,
+      "on_time_rate_pct": 68.97
+    },
+    {
+      "restaurant_area": "Ameerpet",
+      "order_hour": 7,
+      "orders": 100,
+      "avg_delivery_time_min": 34.21,
+      "on_time_rate_pct": 68.0
+    },
+    {
+      "restaurant_area": "Ameerpet",
+      "order_hour": 8,
+      "orders": 71,
+      "avg_delivery_time_min": 43.6,
+      "on_time_rate_pct": 42.25
+    },
+    {
+      "restaurant_area": "Ameerpet",
+      "order_hour": 9,
+      "orders": 53,
+      "avg_delivery_time_min": 42.94,
+      "on_time_rate_pct": 49.06
+    },
+    {
+      "restaurant_area": "Ameerpet",
+      "order_hour": 10,
+      "orders": 80,
+      "avg_delivery_time_min": 35.52,
+      "on_time_rate_pct": 62.5
+    },
+    {
+      "restaurant_area": "Ameerpet",
+      "order_hour": 11,
+      "orders": 102,
+      "avg_delivery_time_min": 33.07,
+      "on_time_rate_pct": 73.53
+    },
+    {
+      "restaurant_area": "Ameerpet",
+      "order_hour": 12,
+      "orders": 131,
+      "avg_delivery_time_min": 43.44,
+      "on_time_rate_pct": 41.98
+    },
+    {
+      "restaurant_area": "Ameerpet",
+      "order_hour": 13,
+      "orders": 138,
+      "avg_delivery_time_min": 44.24,
+      "on_time_rate_pct": 42.75
+    },
+    {
+      "restaurant_area": "Ameerpet",
+      "order_hour": 14,
+      "orders": 94,
+      "avg_delivery_time_min": 34.82,
+      "on_time_rate_pct": 63.83
+    },
+    {
+      "restaurant_area": "Ameerpet",
+      "order_hour": 15,
+      "orders": 64,
+      "avg_delivery_time_min": 33.06,
+      "on_time_rate_pct": 70.31
+    },
+    {
+      "restaurant_area": "Ameerpet",
+      "order_hour": 16,
+      "orders": 79,
+      "avg_delivery_time_min": 35.01,
+      "on_time_rate_pct": 69.62
+    },
+    {
+      "restaurant_area": "Ameerpet",
+      "order_hour": 17,
+      "orders": 120,
+      "avg_delivery_time_min": 33.9,
+      "on_time_rate_pct": 68.33
+    },
+    {
+      "restaurant_area": "Ameerpet",
+      "order_hour": 18,
+      "orders": 179,
+      "avg_delivery_time_min": 36.44,
+      "on_time_rate_pct": 68.16
+    },
+    {
+      "restaurant_area": "Ameerpet",
+      "order_hour": 19,
+      "orders": 228,
+      "avg_delivery_time_min": 42.46,
+      "on_time_rate_pct": 45.18
+    },
+    {
+      "restaurant_area": "Ameerpet",
+      "order_hour": 20,
+      "orders": 231,
+      "avg_delivery_time_min": 43.17,
+      "on_time_rate_pct": 46.75
+    },
+    {
+      "restaurant_area": "Ameerpet",
+      "order_hour": 21,
+      "orders": 185,
+      "avg_delivery_time_min": 41.62,
+      "on_time_rate_pct": 49.19
+    },
+    {
+      "restaurant_area": "Ameerpet",
+      "order_hour": 22,
+      "orders": 106,
+      "avg_delivery_time_min": 35.08,
+      "on_time_rate_pct": 66.04
+    },
+    {
+      "restaurant_area": "Ameerpet",
+      "order_hour": 23,
+      "orders": 52,
+      "avg_delivery_time_min": 33.74,
+      "on_time_rate_pct": 63.46
+    },
+    {
+      "restaurant_area": "Banjara Hills",
+      "order_hour": 0,
+      "orders": 13,
+      "avg_delivery_time_min": 28.7,
+      "on_time_rate_pct": 76.92
+    },
+    {
+      "restaurant_area": "Banjara Hills",
+      "order_hour": 1,
+      "orders": 8,
+      "avg_delivery_time_min": 33.72,
+      "on_time_rate_pct": 75.0
+    },
+    {
+      "restaurant_area": "Banjara Hills",
+      "order_hour": 2,
+      "orders": 15,
+      "avg_delivery_time_min": 38.13,
+      "on_time_rate_pct": 60.0
+    },
+    {
+      "restaurant_area": "Banjara Hills",
+      "order_hour": 3,
+      "orders": 11,
+      "avg_delivery_time_min": 40.91,
+      "on_time_rate_pct": 54.55
+    },
+    {
+      "restaurant_area": "Banjara Hills",
+      "order_hour": 4,
+      "orders": 12,
+      "avg_delivery_time_min": 33.55,
+      "on_time_rate_pct": 75.0
+    },
+    {
+      "restaurant_area": "Banjara Hills",
+      "order_hour": 5,
+      "orders": 29,
+      "avg_delivery_time_min": 32.24,
+      "on_time_rate_pct": 79.31
+    },
+    {
+      "restaurant_area": "Banjara Hills",
+      "order_hour": 6,
+      "orders": 60,
+      "avg_delivery_time_min": 35.74,
+      "on_time_rate_pct": 61.67
+    },
+    {
+      "restaurant_area": "Banjara Hills",
+      "order_hour": 7,
+      "orders": 107,
+      "avg_delivery_time_min": 34.43,
+      "on_time_rate_pct": 72.9
+    },
+    {
+      "restaurant_area": "Banjara Hills",
+      "order_hour": 8,
+      "orders": 73,
+      "avg_delivery_time_min": 44.7,
+      "on_time_rate_pct": 41.1
+    },
+    {
+      "restaurant_area": "Banjara Hills",
+      "order_hour": 9,
+      "orders": 41,
+      "avg_delivery_time_min": 44.01,
+      "on_time_rate_pct": 36.59
+    },
+    {
+      "restaurant_area": "Banjara Hills",
+      "order_hour": 10,
+      "orders": 77,
+      "avg_delivery_time_min": 35.88,
+      "on_time_rate_pct": 66.23
+    },
+    {
+      "restaurant_area": "Banjara Hills",
+      "order_hour": 11,
+      "orders": 103,
+      "avg_delivery_time_min": 33.55,
+      "on_time_rate_pct": 67.96
+    },
+    {
+      "restaurant_area": "Banjara Hills",
+      "order_hour": 12,
+      "orders": 154,
+      "avg_delivery_time_min": 44.06,
+      "on_time_rate_pct": 38.31
+    },
+    {
+      "restaurant_area": "Banjara Hills",
+      "order_hour": 13,
+      "orders": 153,
+      "avg_delivery_time_min": 46.58,
+      "on_time_rate_pct": 35.29
+    },
+    {
+      "restaurant_area": "Banjara Hills",
+      "order_hour": 14,
+      "orders": 100,
+      "avg_delivery_time_min": 33.58,
+      "on_time_rate_pct": 70.0
+    },
+    {
+      "restaurant_area": "Banjara Hills",
+      "order_hour": 15,
+      "orders": 77,
+      "avg_delivery_time_min": 35.15,
+      "on_time_rate_pct": 66.23
+    },
+    {
+      "restaurant_area": "Banjara Hills",
+      "order_hour": 16,
+      "orders": 81,
+      "avg_delivery_time_min": 33.54,
+      "on_time_rate_pct": 66.67
+    },
+    {
+      "restaurant_area": "Banjara Hills",
+      "order_hour": 17,
+      "orders": 118,
+      "avg_delivery_time_min": 35.19,
+      "on_time_rate_pct": 65.25
+    },
+    {
+      "restaurant_area": "Banjara Hills",
+      "order_hour": 18,
+      "orders": 204,
+      "avg_delivery_time_min": 35.3,
+      "on_time_rate_pct": 63.73
+    },
+    {
+      "restaurant_area": "Banjara Hills",
+      "order_hour": 19,
+      "orders": 216,
+      "avg_delivery_time_min": 44.03,
+      "on_time_rate_pct": 42.13
+    },
+    {
+      "restaurant_area": "Banjara Hills",
+      "order_hour": 20,
+      "orders": 267,
+      "avg_delivery_time_min": 43.33,
+      "on_time_rate_pct": 40.82
+    },
+    {
+      "restaurant_area": "Banjara Hills",
+      "order_hour": 21,
+      "orders": 183,
+      "avg_delivery_time_min": 41.7,
+      "on_time_rate_pct": 47.54
+    },
+    {
+      "restaurant_area": "Banjara Hills",
+      "order_hour": 22,
+      "orders": 103,
+      "avg_delivery_time_min": 34.09,
+      "on_time_rate_pct": 67.96
+    },
+    {
+      "restaurant_area": "Banjara Hills",
+      "order_hour": 23,
+      "orders": 38,
+      "avg_delivery_time_min": 36.13,
+      "on_time_rate_pct": 71.05
+    },
+    {
+      "restaurant_area": "Begumpet",
+      "order_hour": 0,
+      "orders": 15,
+      "avg_delivery_time_min": 36.48,
+      "on_time_rate_pct": 73.33
+    },
+    {
+      "restaurant_area": "Begumpet",
+      "order_hour": 1,
+      "orders": 15,
+      "avg_delivery_time_min": 35.99,
+      "on_time_rate_pct": 60.0
+    },
+    {
+      "restaurant_area": "Begumpet",
+      "order_hour": 2,
+      "orders": 10,
+      "avg_delivery_time_min": 42.54,
+      "on_time_rate_pct": 40.0
+    },
+    {
+      "restaurant_area": "Begumpet",
+      "order_hour": 3,
+      "orders": 11,
+      "avg_delivery_time_min": 35.11,
+      "on_time_rate_pct": 54.55
+    },
+    {
+      "restaurant_area": "Begumpet",
+      "order_hour": 4,
+      "orders": 21,
+      "avg_delivery_time_min": 35.94,
+      "on_time_rate_pct": 61.9
+    },
+    {
+      "restaurant_area": "Begumpet",
+      "order_hour": 5,
+      "orders": 20,
+      "avg_delivery_time_min": 32.84,
+      "on_time_rate_pct": 75.0
+    },
+    {
+      "restaurant_area": "Begumpet",
+      "order_hour": 6,
+      "orders": 51,
+      "avg_delivery_time_min": 35.44,
+      "on_time_rate_pct": 70.59
+    },
+    {
+      "restaurant_area": "Begumpet",
+      "order_hour": 7,
+      "orders": 89,
+      "avg_delivery_time_min": 37.76,
+      "on_time_rate_pct": 60.67
+    },
+    {
+      "restaurant_area": "Begumpet",
+      "order_hour": 8,
+      "orders": 68,
+      "avg_delivery_time_min": 45.21,
+      "on_time_rate_pct": 38.24
+    },
+    {
+      "restaurant_area": "Begumpet",
+      "order_hour": 9,
+      "orders": 51,
+      "avg_delivery_time_min": 40.6,
+      "on_time_rate_pct": 49.02
+    },
+    {
+      "restaurant_area": "Begumpet",
+      "order_hour": 10,
+      "orders": 56,
+      "avg_delivery_time_min": 33.12,
+      "on_time_rate_pct": 73.21
+    },
+    {
+      "restaurant_area": "Begumpet",
+      "order_hour": 11,
+      "orders": 107,
+      "avg_delivery_time_min": 35.68,
+      "on_time_rate_pct": 63.55
+    },
+    {
+      "restaurant_area": "Begumpet",
+      "order_hour": 12,
+      "orders": 141,
+      "avg_delivery_time_min": 43.36,
+      "on_time_rate_pct": 45.39
+    },
+    {
+      "restaurant_area": "Begumpet",
+      "order_hour": 13,
+      "orders": 126,
+      "avg_delivery_time_min": 44.38,
+      "on_time_rate_pct": 38.89
+    },
+    {
+      "restaurant_area": "Begumpet",
+      "order_hour": 14,
+      "orders": 101,
+      "avg_delivery_time_min": 35.52,
+      "on_time_rate_pct": 61.39
+    },
+    {
+      "restaurant_area": "Begumpet",
+      "order_hour": 15,
+      "orders": 65,
+      "avg_delivery_time_min": 37.26,
+      "on_time_rate_pct": 60.0
+    },
+    {
+      "restaurant_area": "Begumpet",
+      "order_hour": 16,
+      "orders": 90,
+      "avg_delivery_time_min": 35.69,
+      "on_time_rate_pct": 58.89
+    },
+    {
+      "restaurant_area": "Begumpet",
+      "order_hour": 17,
+      "orders": 125,
+      "avg_delivery_time_min": 36.02,
+      "on_time_rate_pct": 60.0
+    },
+    {
+      "restaurant_area": "Begumpet",
+      "order_hour": 18,
+      "orders": 164,
+      "avg_delivery_time_min": 38.31,
+      "on_time_rate_pct": 59.76
+    },
+    {
+      "restaurant_area": "Begumpet",
+      "order_hour": 19,
+      "orders": 247,
+      "avg_delivery_time_min": 44.2,
+      "on_time_rate_pct": 40.89
+    },
+    {
+      "restaurant_area": "Begumpet",
+      "order_hour": 20,
+      "orders": 247,
+      "avg_delivery_time_min": 43.82,
+      "on_time_rate_pct": 47.77
+    },
+    {
+      "restaurant_area": "Begumpet",
+      "order_hour": 21,
+      "orders": 191,
+      "avg_delivery_time_min": 42.55,
+      "on_time_rate_pct": 45.03
+    },
+    {
+      "restaurant_area": "Begumpet",
+      "order_hour": 22,
+      "orders": 97,
+      "avg_delivery_time_min": 35.96,
+      "on_time_rate_pct": 60.82
+    },
+    {
+      "restaurant_area": "Begumpet",
+      "order_hour": 23,
+      "orders": 63,
+      "avg_delivery_time_min": 34.31,
+      "on_time_rate_pct": 60.32
+    },
+    {
+      "restaurant_area": "Gachibowli",
+      "order_hour": 0,
+      "orders": 21,
+      "avg_delivery_time_min": 40.26,
+      "on_time_rate_pct": 52.38
+    },
+    {
+      "restaurant_area": "Gachibowli",
+      "order_hour": 1,
+      "orders": 23,
+      "avg_delivery_time_min": 39.49,
+      "on_time_rate_pct": 65.22
+    },
+    {
+      "restaurant_area": "Gachibowli",
+      "order_hour": 2,
+      "orders": 15,
+      "avg_delivery_time_min": 41.63,
+      "on_time_rate_pct": 53.33
+    },
+    {
+      "restaurant_area": "Gachibowli",
+      "order_hour": 3,
+      "orders": 10,
+      "avg_delivery_time_min": 30.14,
+      "on_time_rate_pct": 90.0
+    },
+    {
+      "restaurant_area": "Gachibowli",
+      "order_hour": 4,
+      "orders": 14,
+      "avg_delivery_time_min": 39.36,
+      "on_time_rate_pct": 57.14
+    },
+    {
+      "restaurant_area": "Gachibowli",
+      "order_hour": 5,
+      "orders": 29,
+      "avg_delivery_time_min": 35.6,
+      "on_time_rate_pct": 65.52
+    },
+    {
+      "restaurant_area": "Gachibowli",
+      "order_hour": 6,
+      "orders": 63,
+      "avg_delivery_time_min": 34.75,
+      "on_time_rate_pct": 65.08
+    },
+    {
+      "restaurant_area": "Gachibowli",
+      "order_hour": 7,
+      "orders": 122,
+      "avg_delivery_time_min": 35.5,
+      "on_time_rate_pct": 66.39
+    },
+    {
+      "restaurant_area": "Gachibowli",
+      "order_hour": 8,
+      "orders": 96,
+      "avg_delivery_time_min": 47.4,
+      "on_time_rate_pct": 40.62
+    },
+    {
+      "restaurant_area": "Gachibowli",
+      "order_hour": 9,
+      "orders": 49,
+      "avg_delivery_time_min": 43.84,
+      "on_time_rate_pct": 53.06
+    },
+    {
+      "restaurant_area": "Gachibowli",
+      "order_hour": 10,
+      "orders": 80,
+      "avg_delivery_time_min": 35.71,
+      "on_time_rate_pct": 57.5
+    },
+    {
+      "restaurant_area": "Gachibowli",
+      "order_hour": 11,
+      "orders": 111,
+      "avg_delivery_time_min": 35.56,
+      "on_time_rate_pct": 63.96
+    },
+    {
+      "restaurant_area": "Gachibowli",
+      "order_hour": 12,
+      "orders": 155,
+      "avg_delivery_time_min": 43.76,
+      "on_time_rate_pct": 49.03
+    },
+    {
+      "restaurant_area": "Gachibowli",
+      "order_hour": 13,
+      "orders": 143,
+      "avg_delivery_time_min": 43.57,
+      "on_time_rate_pct": 46.15
+    },
+    {
+      "restaurant_area": "Gachibowli",
+      "order_hour": 14,
+      "orders": 100,
+      "avg_delivery_time_min": 35.39,
+      "on_time_rate_pct": 70.0
+    },
+    {
+      "restaurant_area": "Gachibowli",
+      "order_hour": 15,
+      "orders": 91,
+      "avg_delivery_time_min": 35.67,
+      "on_time_rate_pct": 65.93
+    },
+    {
+      "restaurant_area": "Gachibowli",
+      "order_hour": 16,
+      "orders": 77,
+      "avg_delivery_time_min": 40.1,
+      "on_time_rate_pct": 58.44
+    },
+    {
+      "restaurant_area": "Gachibowli",
+      "order_hour": 17,
+      "orders": 141,
+      "avg_delivery_time_min": 36.79,
+      "on_time_rate_pct": 60.99
+    },
+    {
+      "restaurant_area": "Gachibowli",
+      "order_hour": 18,
+      "orders": 215,
+      "avg_delivery_time_min": 36.35,
+      "on_time_rate_pct": 64.65
+    },
+    {
+      "restaurant_area": "Gachibowli",
+      "order_hour": 19,
+      "orders": 277,
+      "avg_delivery_time_min": 44.68,
+      "on_time_rate_pct": 42.6
+    },
+    {
+      "restaurant_area": "Gachibowli",
+      "order_hour": 20,
+      "orders": 294,
+      "avg_delivery_time_min": 44.0,
+      "on_time_rate_pct": 42.86
+    },
+    {
+      "restaurant_area": "Gachibowli",
+      "order_hour": 21,
+      "orders": 212,
+      "avg_delivery_time_min": 45.7,
+      "on_time_rate_pct": 43.4
+    },
+    {
+      "restaurant_area": "Gachibowli",
+      "order_hour": 22,
+      "orders": 108,
+      "avg_delivery_time_min": 37.23,
+      "on_time_rate_pct": 58.33
+    },
+    {
+      "restaurant_area": "Gachibowli",
+      "order_hour": 23,
+      "orders": 55,
+      "avg_delivery_time_min": 37.91,
+      "on_time_rate_pct": 61.82
+    },
+    {
+      "restaurant_area": "HITEC City",
+      "order_hour": 0,
+      "orders": 17,
+      "avg_delivery_time_min": 34.19,
+      "on_time_rate_pct": 52.94
+    },
+    {
+      "restaurant_area": "HITEC City",
+      "order_hour": 1,
+      "orders": 15,
+      "avg_delivery_time_min": 31.67,
+      "on_time_rate_pct": 66.67
+    },
+    {
+      "restaurant_area": "HITEC City",
+      "order_hour": 2,
+      "orders": 13,
+      "avg_delivery_time_min": 33.98,
+      "on_time_rate_pct": 76.92
+    },
+    {
+      "restaurant_area": "HITEC City",
+      "order_hour": 3,
+      "orders": 14,
+      "avg_delivery_time_min": 38.41,
+      "on_time_rate_pct": 57.14
+    },
+    {
+      "restaurant_area": "HITEC City",
+      "order_hour": 4,
+      "orders": 16,
+      "avg_delivery_time_min": 35.02,
+      "on_time_rate_pct": 68.75
+    },
+    {
+      "restaurant_area": "HITEC City",
+      "order_hour": 5,
+      "orders": 27,
+      "avg_delivery_time_min": 29.59,
+      "on_time_rate_pct": 88.89
+    },
+    {
+      "restaurant_area": "HITEC City",
+      "order_hour": 6,
+      "orders": 74,
+      "avg_delivery_time_min": 33.66,
+      "on_time_rate_pct": 66.22
+    },
+    {
+      "restaurant_area": "HITEC City",
+      "order_hour": 7,
+      "orders": 104,
+      "avg_delivery_time_min": 34.14,
+      "on_time_rate_pct": 71.15
+    },
+    {
+      "restaurant_area": "HITEC City",
+      "order_hour": 8,
+      "orders": 85,
+      "avg_delivery_time_min": 45.59,
+      "on_time_rate_pct": 31.76
+    },
+    {
+      "restaurant_area": "HITEC City",
+      "order_hour": 9,
+      "orders": 76,
+      "avg_delivery_time_min": 44.02,
+      "on_time_rate_pct": 40.79
+    },
+    {
+      "restaurant_area": "HITEC City",
+      "order_hour": 10,
+      "orders": 88,
+      "avg_delivery_time_min": 33.34,
+      "on_time_rate_pct": 67.05
+    },
+    {
+      "restaurant_area": "HITEC City",
+      "order_hour": 11,
+      "orders": 141,
+      "avg_delivery_time_min": 35.81,
+      "on_time_rate_pct": 59.57
+    },
+    {
+      "restaurant_area": "HITEC City",
+      "order_hour": 12,
+      "orders": 178,
+      "avg_delivery_time_min": 43.67,
+      "on_time_rate_pct": 37.08
+    },
+    {
+      "restaurant_area": "HITEC City",
+      "order_hour": 13,
+      "orders": 168,
+      "avg_delivery_time_min": 45.11,
+      "on_time_rate_pct": 34.52
+    },
+    {
+      "restaurant_area": "HITEC City",
+      "order_hour": 14,
+      "orders": 104,
+      "avg_delivery_time_min": 33.59,
+      "on_time_rate_pct": 68.27
+    },
+    {
+      "restaurant_area": "HITEC City",
+      "order_hour": 15,
+      "orders": 57,
+      "avg_delivery_time_min": 33.3,
+      "on_time_rate_pct": 71.93
+    },
+    {
+      "restaurant_area": "HITEC City",
+      "order_hour": 16,
+      "orders": 91,
+      "avg_delivery_time_min": 37.02,
+      "on_time_rate_pct": 57.14
+    },
+    {
+      "restaurant_area": "HITEC City",
+      "order_hour": 17,
+      "orders": 153,
+      "avg_delivery_time_min": 34.63,
+      "on_time_rate_pct": 66.67
+    },
+    {
+      "restaurant_area": "HITEC City",
+      "order_hour": 18,
+      "orders": 197,
+      "avg_delivery_time_min": 33.64,
+      "on_time_rate_pct": 64.97
+    },
+    {
+      "restaurant_area": "HITEC City",
+      "order_hour": 19,
+      "orders": 275,
+      "avg_delivery_time_min": 44.83,
+      "on_time_rate_pct": 37.45
+    },
+    {
+      "restaurant_area": "HITEC City",
+      "order_hour": 20,
+      "orders": 324,
+      "avg_delivery_time_min": 45.87,
+      "on_time_rate_pct": 32.41
+    },
+    {
+      "restaurant_area": "HITEC City",
+      "order_hour": 21,
+      "orders": 215,
+      "avg_delivery_time_min": 46.3,
+      "on_time_rate_pct": 31.16
+    },
+    {
+      "restaurant_area": "HITEC City",
+      "order_hour": 22,
+      "orders": 138,
+      "avg_delivery_time_min": 36.14,
+      "on_time_rate_pct": 62.32
+    },
+    {
+      "restaurant_area": "HITEC City",
+      "order_hour": 23,
+      "orders": 61,
+      "avg_delivery_time_min": 35.62,
+      "on_time_rate_pct": 63.93
+    },
+    {
+      "restaurant_area": "Jubilee Hills",
+      "order_hour": 0,
+      "orders": 8,
+      "avg_delivery_time_min": 35.45,
+      "on_time_rate_pct": 62.5
+    },
+    {
+      "restaurant_area": "Jubilee Hills",
+      "order_hour": 1,
+      "orders": 14,
+      "avg_delivery_time_min": 40.2,
+      "on_time_rate_pct": 64.29
+    },
+    {
+      "restaurant_area": "Jubilee Hills",
+      "order_hour": 2,
+      "orders": 13,
+      "avg_delivery_time_min": 33.13,
+      "on_time_rate_pct": 69.23
+    },
+    {
+      "restaurant_area": "Jubilee Hills",
+      "order_hour": 3,
+      "orders": 16,
+      "avg_delivery_time_min": 33.2,
+      "on_time_rate_pct": 62.5
+    },
+    {
+      "restaurant_area": "Jubilee Hills",
+      "order_hour": 4,
+      "orders": 15,
+      "avg_delivery_time_min": 31.63,
+      "on_time_rate_pct": 80.0
+    },
+    {
+      "restaurant_area": "Jubilee Hills",
+      "order_hour": 5,
+      "orders": 31,
+      "avg_delivery_time_min": 40.05,
+      "on_time_rate_pct": 54.84
+    },
+    {
+      "restaurant_area": "Jubilee Hills",
+      "order_hour": 6,
+      "orders": 48,
+      "avg_delivery_time_min": 34.38,
+      "on_time_rate_pct": 68.75
+    },
+    {
+      "restaurant_area": "Jubilee Hills",
+      "order_hour": 7,
+      "orders": 91,
+      "avg_delivery_time_min": 31.84,
+      "on_time_rate_pct": 72.53
+    },
+    {
+      "restaurant_area": "Jubilee Hills",
+      "order_hour": 8,
+      "orders": 93,
+      "avg_delivery_time_min": 40.85,
+      "on_time_rate_pct": 52.69
+    },
+    {
+      "restaurant_area": "Jubilee Hills",
+      "order_hour": 9,
+      "orders": 66,
+      "avg_delivery_time_min": 40.93,
+      "on_time_rate_pct": 53.03
+    },
+    {
+      "restaurant_area": "Jubilee Hills",
+      "order_hour": 10,
+      "orders": 75,
+      "avg_delivery_time_min": 33.78,
+      "on_time_rate_pct": 66.67
+    },
+    {
+      "restaurant_area": "Jubilee Hills",
+      "order_hour": 11,
+      "orders": 114,
+      "avg_delivery_time_min": 35.93,
+      "on_time_rate_pct": 60.53
+    },
+    {
+      "restaurant_area": "Jubilee Hills",
+      "order_hour": 12,
+      "orders": 183,
+      "avg_delivery_time_min": 43.73,
+      "on_time_rate_pct": 39.34
+    },
+    {
+      "restaurant_area": "Jubilee Hills",
+      "order_hour": 13,
+      "orders": 143,
+      "avg_delivery_time_min": 39.75,
+      "on_time_rate_pct": 57.34
+    },
+    {
+      "restaurant_area": "Jubilee Hills",
+      "order_hour": 14,
+      "orders": 102,
+      "avg_delivery_time_min": 34.67,
+      "on_time_rate_pct": 66.67
+    },
+    {
+      "restaurant_area": "Jubilee Hills",
+      "order_hour": 15,
+      "orders": 63,
+      "avg_delivery_time_min": 31.36,
+      "on_time_rate_pct": 76.19
+    },
+    {
+      "restaurant_area": "Jubilee Hills",
+      "order_hour": 16,
+      "orders": 114,
+      "avg_delivery_time_min": 34.52,
+      "on_time_rate_pct": 73.68
+    },
+    {
+      "restaurant_area": "Jubilee Hills",
+      "order_hour": 17,
+      "orders": 126,
+      "avg_delivery_time_min": 33.29,
+      "on_time_rate_pct": 68.25
+    },
+    {
+      "restaurant_area": "Jubilee Hills",
+      "order_hour": 18,
+      "orders": 208,
+      "avg_delivery_time_min": 32.27,
+      "on_time_rate_pct": 74.52
+    },
+    {
+      "restaurant_area": "Jubilee Hills",
+      "order_hour": 19,
+      "orders": 251,
+      "avg_delivery_time_min": 41.68,
+      "on_time_rate_pct": 43.43
+    },
+    {
+      "restaurant_area": "Jubilee Hills",
+      "order_hour": 20,
+      "orders": 292,
+      "avg_delivery_time_min": 43.04,
+      "on_time_rate_pct": 42.47
+    },
+    {
+      "restaurant_area": "Jubilee Hills",
+      "order_hour": 21,
+      "orders": 194,
+      "avg_delivery_time_min": 43.02,
+      "on_time_rate_pct": 41.75
+    },
+    {
+      "restaurant_area": "Jubilee Hills",
+      "order_hour": 22,
+      "orders": 120,
+      "avg_delivery_time_min": 33.49,
+      "on_time_rate_pct": 67.5
+    },
+    {
+      "restaurant_area": "Jubilee Hills",
+      "order_hour": 23,
+      "orders": 52,
+      "avg_delivery_time_min": 36.19,
+      "on_time_rate_pct": 59.62
+    },
+    {
+      "restaurant_area": "Kondapur",
+      "order_hour": 0,
+      "orders": 18,
+      "avg_delivery_time_min": 37.78,
+      "on_time_rate_pct": 66.67
+    },
+    {
+      "restaurant_area": "Kondapur",
+      "order_hour": 1,
+      "orders": 20,
+      "avg_delivery_time_min": 33.2,
+      "on_time_rate_pct": 60.0
+    },
+    {
+      "restaurant_area": "Kondapur",
+      "order_hour": 2,
+      "orders": 11,
+      "avg_delivery_time_min": 35.41,
+      "on_time_rate_pct": 72.73
+    },
+    {
+      "restaurant_area": "Kondapur",
+      "order_hour": 3,
+      "orders": 14,
+      "avg_delivery_time_min": 34.89,
+      "on_time_rate_pct": 71.43
+    },
+    {
+      "restaurant_area": "Kondapur",
+      "order_hour": 4,
+      "orders": 13,
+      "avg_delivery_time_min": 35.06,
+      "on_time_rate_pct": 61.54
+    },
+    {
+      "restaurant_area": "Kondapur",
+      "order_hour": 5,
+      "orders": 31,
+      "avg_delivery_time_min": 34.41,
+      "on_time_rate_pct": 67.74
+    },
+    {
+      "restaurant_area": "Kondapur",
+      "order_hour": 6,
+      "orders": 59,
+      "avg_delivery_time_min": 36.51,
+      "on_time_rate_pct": 64.41
+    },
+    {
+      "restaurant_area": "Kondapur",
+      "order_hour": 7,
+      "orders": 100,
+      "avg_delivery_time_min": 35.57,
+      "on_time_rate_pct": 68.0
+    },
+    {
+      "restaurant_area": "Kondapur",
+      "order_hour": 8,
+      "orders": 86,
+      "avg_delivery_time_min": 44.28,
+      "on_time_rate_pct": 40.7
+    },
+    {
+      "restaurant_area": "Kondapur",
+      "order_hour": 9,
+      "orders": 53,
+      "avg_delivery_time_min": 40.36,
+      "on_time_rate_pct": 50.94
+    },
+    {
+      "restaurant_area": "Kondapur",
+      "order_hour": 10,
+      "orders": 75,
+      "avg_delivery_time_min": 36.65,
+      "on_time_rate_pct": 61.33
+    },
+    {
+      "restaurant_area": "Kondapur",
+      "order_hour": 11,
+      "orders": 118,
+      "avg_delivery_time_min": 34.0,
+      "on_time_rate_pct": 68.64
+    },
+    {
+      "restaurant_area": "Kondapur",
+      "order_hour": 12,
+      "orders": 159,
+      "avg_delivery_time_min": 41.77,
+      "on_time_rate_pct": 47.8
+    },
+    {
+      "restaurant_area": "Kondapur",
+      "order_hour": 13,
+      "orders": 143,
+      "avg_delivery_time_min": 45.24,
+      "on_time_rate_pct": 44.76
+    },
+    {
+      "restaurant_area": "Kondapur",
+      "order_hour": 14,
+      "orders": 104,
+      "avg_delivery_time_min": 38.66,
+      "on_time_rate_pct": 51.92
+    },
+    {
+      "restaurant_area": "Kondapur",
+      "order_hour": 15,
+      "orders": 76,
+      "avg_delivery_time_min": 35.63,
+      "on_time_rate_pct": 65.79
+    },
+    {
+      "restaurant_area": "Kondapur",
+      "order_hour": 16,
+      "orders": 90,
+      "avg_delivery_time_min": 37.34,
+      "on_time_rate_pct": 57.78
+    },
+    {
+      "restaurant_area": "Kondapur",
+      "order_hour": 17,
+      "orders": 138,
+      "avg_delivery_time_min": 35.52,
+      "on_time_rate_pct": 68.12
+    },
+    {
+      "restaurant_area": "Kondapur",
+      "order_hour": 18,
+      "orders": 222,
+      "avg_delivery_time_min": 37.65,
+      "on_time_rate_pct": 60.36
+    },
+    {
+      "restaurant_area": "Kondapur",
+      "order_hour": 19,
+      "orders": 240,
+      "avg_delivery_time_min": 44.02,
+      "on_time_rate_pct": 45.42
+    },
+    {
+      "restaurant_area": "Kondapur",
+      "order_hour": 20,
+      "orders": 264,
+      "avg_delivery_time_min": 43.02,
+      "on_time_rate_pct": 45.45
+    },
+    {
+      "restaurant_area": "Kondapur",
+      "order_hour": 21,
+      "orders": 200,
+      "avg_delivery_time_min": 40.08,
+      "on_time_rate_pct": 54.5
+    },
+    {
+      "restaurant_area": "Kondapur",
+      "order_hour": 22,
+      "orders": 120,
+      "avg_delivery_time_min": 39.29,
+      "on_time_rate_pct": 54.17
+    },
+    {
+      "restaurant_area": "Kondapur",
+      "order_hour": 23,
+      "orders": 75,
+      "avg_delivery_time_min": 35.78,
+      "on_time_rate_pct": 58.67
+    },
+    {
+      "restaurant_area": "Kukatpally",
+      "order_hour": 0,
+      "orders": 18,
+      "avg_delivery_time_min": 39.3,
+      "on_time_rate_pct": 66.67
+    },
+    {
+      "restaurant_area": "Kukatpally",
+      "order_hour": 1,
+      "orders": 10,
+      "avg_delivery_time_min": 36.36,
+      "on_time_rate_pct": 60.0
+    },
+    {
+      "restaurant_area": "Kukatpally",
+      "order_hour": 2,
+      "orders": 24,
+      "avg_delivery_time_min": 31.57,
+      "on_time_rate_pct": 70.83
+    },
+    {
+      "restaurant_area": "Kukatpally",
+      "order_hour": 3,
+      "orders": 12,
+      "avg_delivery_time_min": 37.48,
+      "on_time_rate_pct": 58.33
+    },
+    {
+      "restaurant_area": "Kukatpally",
+      "order_hour": 4,
+      "orders": 17,
+      "avg_delivery_time_min": 29.55,
+      "on_time_rate_pct": 76.47
+    },
+    {
+      "restaurant_area": "Kukatpally",
+      "order_hour": 5,
+      "orders": 25,
+      "avg_delivery_time_min": 38.97,
+      "on_time_rate_pct": 64.0
+    },
+    {
+      "restaurant_area": "Kukatpally",
+      "order_hour": 6,
+      "orders": 69,
+      "avg_delivery_time_min": 35.2,
+      "on_time_rate_pct": 62.32
+    },
+    {
+      "restaurant_area": "Kukatpally",
+      "order_hour": 7,
+      "orders": 121,
+      "avg_delivery_time_min": 35.44,
+      "on_time_rate_pct": 61.98
+    },
+    {
+      "restaurant_area": "Kukatpally",
+      "order_hour": 8,
+      "orders": 91,
+      "avg_delivery_time_min": 49.08,
+      "on_time_rate_pct": 27.47
+    },
+    {
+      "restaurant_area": "Kukatpally",
+      "order_hour": 9,
+      "orders": 55,
+      "avg_delivery_time_min": 43.57,
+      "on_time_rate_pct": 47.27
+    },
+    {
+      "restaurant_area": "Kukatpally",
+      "order_hour": 10,
+      "orders": 91,
+      "avg_delivery_time_min": 36.27,
+      "on_time_rate_pct": 61.54
+    },
+    {
+      "restaurant_area": "Kukatpally",
+      "order_hour": 11,
+      "orders": 123,
+      "avg_delivery_time_min": 34.99,
+      "on_time_rate_pct": 63.41
+    },
+    {
+      "restaurant_area": "Kukatpally",
+      "order_hour": 12,
+      "orders": 176,
+      "avg_delivery_time_min": 47.81,
+      "on_time_rate_pct": 31.25
+    },
+    {
+      "restaurant_area": "Kukatpally",
+      "order_hour": 13,
+      "orders": 140,
+      "avg_delivery_time_min": 50.13,
+      "on_time_rate_pct": 27.86
+    },
+    {
+      "restaurant_area": "Kukatpally",
+      "order_hour": 14,
+      "orders": 89,
+      "avg_delivery_time_min": 35.62,
+      "on_time_rate_pct": 74.16
+    },
+    {
+      "restaurant_area": "Kukatpally",
+      "order_hour": 15,
+      "orders": 83,
+      "avg_delivery_time_min": 34.42,
+      "on_time_rate_pct": 72.29
+    },
+    {
+      "restaurant_area": "Kukatpally",
+      "order_hour": 16,
+      "orders": 74,
+      "avg_delivery_time_min": 38.45,
+      "on_time_rate_pct": 55.41
+    },
+    {
+      "restaurant_area": "Kukatpally",
+      "order_hour": 17,
+      "orders": 127,
+      "avg_delivery_time_min": 35.71,
+      "on_time_rate_pct": 64.57
+    },
+    {
+      "restaurant_area": "Kukatpally",
+      "order_hour": 18,
+      "orders": 195,
+      "avg_delivery_time_min": 36.31,
+      "on_time_rate_pct": 62.05
+    },
+    {
+      "restaurant_area": "Kukatpally",
+      "order_hour": 19,
+      "orders": 259,
+      "avg_delivery_time_min": 46.18,
+      "on_time_rate_pct": 33.2
+    },
+    {
+      "restaurant_area": "Kukatpally",
+      "order_hour": 20,
+      "orders": 285,
+      "avg_delivery_time_min": 46.74,
+      "on_time_rate_pct": 32.28
+    },
+    {
+      "restaurant_area": "Kukatpally",
+      "order_hour": 21,
+      "orders": 222,
+      "avg_delivery_time_min": 48.35,
+      "on_time_rate_pct": 33.33
+    },
+    {
+      "restaurant_area": "Kukatpally",
+      "order_hour": 22,
+      "orders": 136,
+      "avg_delivery_time_min": 36.0,
+      "on_time_rate_pct": 61.76
+    },
+    {
+      "restaurant_area": "Kukatpally",
+      "order_hour": 23,
+      "orders": 56,
+      "avg_delivery_time_min": 35.5,
+      "on_time_rate_pct": 64.29
+    },
+    {
+      "restaurant_area": "Madhapur",
+      "order_hour": 0,
+      "orders": 18,
+      "avg_delivery_time_min": 34.48,
+      "on_time_rate_pct": 66.67
+    },
+    {
+      "restaurant_area": "Madhapur",
+      "order_hour": 1,
+      "orders": 14,
+      "avg_delivery_time_min": 34.88,
+      "on_time_rate_pct": 71.43
+    },
+    {
+      "restaurant_area": "Madhapur",
+      "order_hour": 2,
+      "orders": 9,
+      "avg_delivery_time_min": 35.23,
+      "on_time_rate_pct": 66.67
+    },
+    {
+      "restaurant_area": "Madhapur",
+      "order_hour": 3,
+      "orders": 17,
+      "avg_delivery_time_min": 31.04,
+      "on_time_rate_pct": 70.59
+    },
+    {
+      "restaurant_area": "Madhapur",
+      "order_hour": 4,
+      "orders": 14,
+      "avg_delivery_time_min": 39.09,
+      "on_time_rate_pct": 57.14
+    },
+    {
+      "restaurant_area": "Madhapur",
+      "order_hour": 5,
+      "orders": 29,
+      "avg_delivery_time_min": 33.57,
+      "on_time_rate_pct": 72.41
+    },
+    {
+      "restaurant_area": "Madhapur",
+      "order_hour": 6,
+      "orders": 58,
+      "avg_delivery_time_min": 36.1,
+      "on_time_rate_pct": 63.79
+    },
+    {
+      "restaurant_area": "Madhapur",
+      "order_hour": 7,
+      "orders": 108,
+      "avg_delivery_time_min": 35.41,
+      "on_time_rate_pct": 59.26
+    },
+    {
+      "restaurant_area": "Madhapur",
+      "order_hour": 8,
+      "orders": 87,
+      "avg_delivery_time_min": 42.67,
+      "on_time_rate_pct": 32.18
+    },
+    {
+      "restaurant_area": "Madhapur",
+      "order_hour": 9,
+      "orders": 74,
+      "avg_delivery_time_min": 44.58,
+      "on_time_rate_pct": 32.43
+    },
+    {
+      "restaurant_area": "Madhapur",
+      "order_hour": 10,
+      "orders": 69,
+      "avg_delivery_time_min": 33.2,
+      "on_time_rate_pct": 72.46
+    },
+    {
+      "restaurant_area": "Madhapur",
+      "order_hour": 11,
+      "orders": 110,
+      "avg_delivery_time_min": 34.27,
+      "on_time_rate_pct": 67.27
+    },
+    {
+      "restaurant_area": "Madhapur",
+      "order_hour": 12,
+      "orders": 141,
+      "avg_delivery_time_min": 45.02,
+      "on_time_rate_pct": 36.88
+    },
+    {
+      "restaurant_area": "Madhapur",
+      "order_hour": 13,
+      "orders": 179,
+      "avg_delivery_time_min": 45.08,
+      "on_time_rate_pct": 31.84
+    },
+    {
+      "restaurant_area": "Madhapur",
+      "order_hour": 14,
+      "orders": 107,
+      "avg_delivery_time_min": 36.92,
+      "on_time_rate_pct": 66.36
+    },
+    {
+      "restaurant_area": "Madhapur",
+      "order_hour": 15,
+      "orders": 78,
+      "avg_delivery_time_min": 35.68,
+      "on_time_rate_pct": 62.82
+    },
+    {
+      "restaurant_area": "Madhapur",
+      "order_hour": 16,
+      "orders": 101,
+      "avg_delivery_time_min": 34.12,
+      "on_time_rate_pct": 67.33
+    },
+    {
+      "restaurant_area": "Madhapur",
+      "order_hour": 17,
+      "orders": 156,
+      "avg_delivery_time_min": 32.62,
+      "on_time_rate_pct": 71.15
+    },
+    {
+      "restaurant_area": "Madhapur",
+      "order_hour": 18,
+      "orders": 240,
+      "avg_delivery_time_min": 33.07,
+      "on_time_rate_pct": 72.08
+    },
+    {
+      "restaurant_area": "Madhapur",
+      "order_hour": 19,
+      "orders": 256,
+      "avg_delivery_time_min": 44.39,
+      "on_time_rate_pct": 38.28
+    },
+    {
+      "restaurant_area": "Madhapur",
+      "order_hour": 20,
+      "orders": 305,
+      "avg_delivery_time_min": 44.75,
+      "on_time_rate_pct": 35.41
+    },
+    {
+      "restaurant_area": "Madhapur",
+      "order_hour": 21,
+      "orders": 198,
+      "avg_delivery_time_min": 44.49,
+      "on_time_rate_pct": 35.35
+    },
+    {
+      "restaurant_area": "Madhapur",
+      "order_hour": 22,
+      "orders": 120,
+      "avg_delivery_time_min": 31.3,
+      "on_time_rate_pct": 75.83
+    },
+    {
+      "restaurant_area": "Madhapur",
+      "order_hour": 23,
+      "orders": 69,
+      "avg_delivery_time_min": 33.9,
+      "on_time_rate_pct": 68.12
+    },
+    {
+      "restaurant_area": "Secunderabad",
+      "order_hour": 0,
+      "orders": 16,
+      "avg_delivery_time_min": 33.37,
+      "on_time_rate_pct": 68.75
+    },
+    {
+      "restaurant_area": "Secunderabad",
+      "order_hour": 1,
+      "orders": 9,
+      "avg_delivery_time_min": 35.79,
+      "on_time_rate_pct": 44.44
+    },
+    {
+      "restaurant_area": "Secunderabad",
+      "order_hour": 2,
+      "orders": 13,
+      "avg_delivery_time_min": 32.25,
+      "on_time_rate_pct": 69.23
+    },
+    {
+      "restaurant_area": "Secunderabad",
+      "order_hour": 3,
+      "orders": 24,
+      "avg_delivery_time_min": 46.67,
+      "on_time_rate_pct": 50.0
+    },
+    {
+      "restaurant_area": "Secunderabad",
+      "order_hour": 4,
+      "orders": 17,
+      "avg_delivery_time_min": 27.69,
+      "on_time_rate_pct": 82.35
+    },
+    {
+      "restaurant_area": "Secunderabad",
+      "order_hour": 5,
+      "orders": 30,
+      "avg_delivery_time_min": 38.16,
+      "on_time_rate_pct": 63.33
+    },
+    {
+      "restaurant_area": "Secunderabad",
+      "order_hour": 6,
+      "orders": 60,
+      "avg_delivery_time_min": 37.43,
+      "on_time_rate_pct": 65.0
+    },
+    {
+      "restaurant_area": "Secunderabad",
+      "order_hour": 7,
+      "orders": 92,
+      "avg_delivery_time_min": 37.9,
+      "on_time_rate_pct": 60.87
+    },
+    {
+      "restaurant_area": "Secunderabad",
+      "order_hour": 8,
+      "orders": 70,
+      "avg_delivery_time_min": 43.82,
+      "on_time_rate_pct": 51.43
+    },
+    {
+      "restaurant_area": "Secunderabad",
+      "order_hour": 9,
+      "orders": 55,
+      "avg_delivery_time_min": 45.5,
+      "on_time_rate_pct": 41.82
+    },
+    {
+      "restaurant_area": "Secunderabad",
+      "order_hour": 10,
+      "orders": 76,
+      "avg_delivery_time_min": 40.82,
+      "on_time_rate_pct": 59.21
+    },
+    {
+      "restaurant_area": "Secunderabad",
+      "order_hour": 11,
+      "orders": 87,
+      "avg_delivery_time_min": 34.93,
+      "on_time_rate_pct": 65.52
+    },
+    {
+      "restaurant_area": "Secunderabad",
+      "order_hour": 12,
+      "orders": 142,
+      "avg_delivery_time_min": 45.33,
+      "on_time_rate_pct": 43.66
+    },
+    {
+      "restaurant_area": "Secunderabad",
+      "order_hour": 13,
+      "orders": 135,
+      "avg_delivery_time_min": 42.14,
+      "on_time_rate_pct": 45.19
+    },
+    {
+      "restaurant_area": "Secunderabad",
+      "order_hour": 14,
+      "orders": 104,
+      "avg_delivery_time_min": 38.29,
+      "on_time_rate_pct": 65.38
+    },
+    {
+      "restaurant_area": "Secunderabad",
+      "order_hour": 15,
+      "orders": 79,
+      "avg_delivery_time_min": 37.94,
+      "on_time_rate_pct": 58.23
+    },
+    {
+      "restaurant_area": "Secunderabad",
+      "order_hour": 16,
+      "orders": 79,
+      "avg_delivery_time_min": 35.6,
+      "on_time_rate_pct": 67.09
+    },
+    {
+      "restaurant_area": "Secunderabad",
+      "order_hour": 17,
+      "orders": 155,
+      "avg_delivery_time_min": 36.21,
+      "on_time_rate_pct": 61.94
+    },
+    {
+      "restaurant_area": "Secunderabad",
+      "order_hour": 18,
+      "orders": 201,
+      "avg_delivery_time_min": 37.03,
+      "on_time_rate_pct": 61.69
+    },
+    {
+      "restaurant_area": "Secunderabad",
+      "order_hour": 19,
+      "orders": 241,
+      "avg_delivery_time_min": 46.23,
+      "on_time_rate_pct": 42.32
+    },
+    {
+      "restaurant_area": "Secunderabad",
+      "order_hour": 20,
+      "orders": 286,
+      "avg_delivery_time_min": 46.01,
+      "on_time_rate_pct": 46.15
+    },
+    {
+      "restaurant_area": "Secunderabad",
+      "order_hour": 21,
+      "orders": 206,
+      "avg_delivery_time_min": 46.33,
+      "on_time_rate_pct": 40.78
+    },
+    {
+      "restaurant_area": "Secunderabad",
+      "order_hour": 22,
+      "orders": 136,
+      "avg_delivery_time_min": 35.44,
+      "on_time_rate_pct": 63.24
+    },
+    {
+      "restaurant_area": "Secunderabad",
+      "order_hour": 23,
+      "orders": 52,
+      "avg_delivery_time_min": 37.99,
+      "on_time_rate_pct": 61.54
+    }
+  ],
+  "weather_metrics": [
+    {
+      "weather_condition": "Clear",
+      "traffic_density": "High",
+      "orders": 4588,
+      "avg_delivery_time_min": 39.92,
+      "avg_delay_min": -1.24
+    },
+    {
+      "weather_condition": "Clear",
+      "traffic_density": "Jam",
+      "orders": 2206,
+      "avg_delivery_time_min": 45.36,
+      "avg_delay_min": 4.42
+    },
+    {
+      "weather_condition": "Clear",
+      "traffic_density": "Low",
+      "orders": 3444,
+      "avg_delivery_time_min": 30.08,
+      "avg_delay_min": -7.07
+    },
+    {
+      "weather_condition": "Clear",
+      "traffic_density": "Medium",
+      "orders": 4615,
+      "avg_delivery_time_min": 33.99,
+      "avg_delay_min": -3.19
+    },
+    {
+      "weather_condition": "Cloudy",
+      "traffic_density": "High",
+      "orders": 1355,
+      "avg_delivery_time_min": 41.63,
+      "avg_delay_min": 0.37
+    },
+    {
+      "weather_condition": "Cloudy",
+      "traffic_density": "Jam",
+      "orders": 651,
+      "avg_delivery_time_min": 48.18,
+      "avg_delay_min": 7.04
+    },
+    {
+      "weather_condition": "Cloudy",
+      "traffic_density": "Low",
+      "orders": 911,
+      "avg_delivery_time_min": 31.38,
+      "avg_delay_min": -5.71
+    },
+    {
+      "weather_condition": "Cloudy",
+      "traffic_density": "Medium",
+      "orders": 1355,
+      "avg_delivery_time_min": 35.74,
+      "avg_delay_min": -1.7
+    },
+    {
+      "weather_condition": "Heavy Rain",
+      "traffic_density": "High",
+      "orders": 470,
+      "avg_delivery_time_min": 51.78,
+      "avg_delay_min": 10.65
+    },
+    {
+      "weather_condition": "Heavy Rain",
+      "traffic_density": "Jam",
+      "orders": 652,
+      "avg_delivery_time_min": 60.52,
+      "avg_delay_min": 19.48
+    },
+    {
+      "weather_condition": "Heavy Rain",
+      "traffic_density": "Low",
+      "orders": 30,
+      "avg_delivery_time_min": 43.13,
+      "avg_delay_min": 5.56
+    },
+    {
+      "weather_condition": "Heavy Rain",
+      "traffic_density": "Medium",
+      "orders": 294,
+      "avg_delivery_time_min": 45.51,
+      "avg_delay_min": 8.06
+    },
+    {
+      "weather_condition": "Light Rain",
+      "traffic_density": "High",
+      "orders": 1049,
+      "avg_delivery_time_min": 45.82,
+      "avg_delay_min": 4.81
+    },
+    {
+      "weather_condition": "Light Rain",
+      "traffic_density": "Jam",
+      "orders": 1588,
+      "avg_delivery_time_min": 55.53,
+      "avg_delay_min": 14.52
+    },
+    {
+      "weather_condition": "Light Rain",
+      "traffic_density": "Low",
+      "orders": 61,
+      "avg_delivery_time_min": 37.31,
+      "avg_delay_min": -0.88
+    },
+    {
+      "weather_condition": "Light Rain",
+      "traffic_density": "Medium",
+      "orders": 731,
+      "avg_delivery_time_min": 38.94,
+      "avg_delay_min": 1.7
+    }
+  ],
+  "restaurant_risk": [
+    {
+      "restaurant_id": "R068",
+      "name": "Cafe 45 Cafe",
+      "area": "Begumpet",
+      "cuisine_type": "Cafe",
+      "recent_orders": 55,
+      "order_growth_pct": -28.57,
+      "recent_rating": 3.8,
+      "rating_change": -0.04,
+      "recent_delay": 1.24,
+      "recent_on_time": 0.49,
+      "risk_score": 64.14,
+      "risk_tier": "Critical"
+    },
+    {
+      "restaurant_id": "R019",
+      "name": "Spice Route Express",
+      "area": "HITEC City",
+      "cuisine_type": "Pizza",
+      "recent_orders": 72,
+      "order_growth_pct": -29.41,
+      "recent_rating": 4.2,
+      "rating_change": 0.04,
+      "recent_delay": 0.91,
+      "recent_on_time": 0.46,
+      "risk_score": 63.23,
+      "risk_tier": "Critical"
+    },
+    {
+      "restaurant_id": "R080",
+      "name": "Spice Route Kitchen",
+      "area": "Secunderabad",
+      "cuisine_type": "Fast Food",
+      "recent_orders": 66,
+      "order_growth_pct": -29.03,
+      "recent_rating": 4.21,
+      "rating_change": -0.04,
+      "recent_delay": 0.78,
+      "recent_on_time": 0.55,
+      "risk_score": 62.14,
+      "risk_tier": "Critical"
+    },
+    {
+      "restaurant_id": "R030",
+      "name": "Bowl Company Foods",
+      "area": "Banjara Hills",
+      "cuisine_type": "Fast Food",
+      "recent_orders": 55,
+      "order_growth_pct": -20.29,
+      "recent_rating": 3.82,
+      "rating_change": -0.17,
+      "recent_delay": 1.79,
+      "recent_on_time": 0.44,
+      "risk_score": 61.07,
+      "risk_tier": "Critical"
+    },
+    {
+      "restaurant_id": "R071",
+      "name": "Charminar Corner",
+      "area": "Begumpet",
+      "cuisine_type": "Biryani",
+      "recent_orders": 65,
+      "order_growth_pct": -19.75,
+      "recent_rating": 3.85,
+      "rating_change": -0.03,
+      "recent_delay": 4.66,
+      "recent_on_time": 0.38,
+      "risk_score": 60.96,
+      "risk_tier": "Critical"
+    },
+    {
+      "restaurant_id": "R023",
+      "name": "Bowl Company Corner",
+      "area": "HITEC City",
+      "cuisine_type": "North Indian",
+      "recent_orders": 68,
+      "order_growth_pct": -23.6,
+      "recent_rating": 4.18,
+      "rating_change": 0.12,
+      "recent_delay": 2.3,
+      "recent_on_time": 0.43,
+      "risk_score": 58.4,
+      "risk_tier": "Critical"
+    },
+    {
+      "restaurant_id": "R066",
+      "name": "Daily Kitchen House",
+      "area": "Begumpet",
+      "cuisine_type": "Healthy",
+      "recent_orders": 57,
+      "order_growth_pct": -24.0,
+      "recent_rating": 4.36,
+      "rating_change": -0.16,
+      "recent_delay": -2.68,
+      "recent_on_time": 0.61,
+      "risk_score": 57.04,
+      "risk_tier": "Critical"
+    },
+    {
+      "restaurant_id": "R070",
+      "name": "Nizam's Foods",
+      "area": "Begumpet",
+      "cuisine_type": "Multi-cuisine",
+      "recent_orders": 52,
+      "order_growth_pct": -20.0,
+      "recent_rating": 3.69,
+      "rating_change": -0.13,
+      "recent_delay": 0.43,
+      "recent_on_time": 0.52,
+      "risk_score": 52.72,
+      "risk_tier": "Critical"
+    },
+    {
+      "restaurant_id": "R059",
+      "name": "Daily Kitchen Express",
+      "area": "Ameerpet",
+      "cuisine_type": "Chinese",
+      "recent_orders": 55,
+      "order_growth_pct": -24.66,
+      "recent_rating": 3.65,
+      "rating_change": 0.05,
+      "recent_delay": -0.77,
+      "recent_on_time": 0.56,
+      "risk_score": 50.62,
+      "risk_tier": "Critical"
+    },
+    {
+      "restaurant_id": "R063",
+      "name": "Nizam's Corner",
+      "area": "Ameerpet",
+      "cuisine_type": "Cafe",
+      "recent_orders": 58,
+      "order_growth_pct": -23.68,
+      "recent_rating": 4.59,
+      "rating_change": 0.08,
+      "recent_delay": 0.71,
+      "recent_on_time": 0.59,
+      "risk_score": 50.24,
+      "risk_tier": "Critical"
+    },
+    {
+      "restaurant_id": "R049",
+      "name": "Pearl Kitchen",
+      "area": "Kondapur",
+      "cuisine_type": "Pizza",
+      "recent_orders": 68,
+      "order_growth_pct": -25.27,
+      "recent_rating": 3.81,
+      "rating_change": 0.06,
+      "recent_delay": -0.35,
+      "recent_on_time": 0.62,
+      "risk_score": 50.13,
+      "risk_tier": "Critical"
+    },
+    {
+      "restaurant_id": "R025",
+      "name": "Metro Kitchen",
+      "area": "Banjara Hills",
+      "cuisine_type": "Multi-cuisine",
+      "recent_orders": 61,
+      "order_growth_pct": -16.44,
+      "recent_rating": 4.49,
+      "rating_change": -0.06,
+      "recent_delay": 2.39,
+      "recent_on_time": 0.48,
+      "risk_score": 49.21,
+      "risk_tier": "Watch"
+    },
+    {
+      "restaurant_id": "R028",
+      "name": "Pearl Cafe",
+      "area": "Banjara Hills",
+      "cuisine_type": "North Indian",
+      "recent_orders": 61,
+      "order_growth_pct": -20.78,
+      "recent_rating": 3.73,
+      "rating_change": -0.01,
+      "recent_delay": 1.29,
+      "recent_on_time": 0.56,
+      "risk_score": 48.63,
+      "risk_tier": "Watch"
+    },
+    {
+      "restaurant_id": "R052",
+      "name": "Daily Kitchen Cafe",
+      "area": "Kondapur",
+      "cuisine_type": "South Indian",
+      "recent_orders": 69,
+      "order_growth_pct": -17.86,
+      "recent_rating": 3.92,
+      "rating_change": -0.12,
+      "recent_delay": 0.44,
+      "recent_on_time": 0.57,
+      "risk_score": 47.45,
+      "risk_tier": "Watch"
+    },
+    {
+      "restaurant_id": "R027",
+      "name": "Urban Tadka Express",
+      "area": "Banjara Hills",
+      "cuisine_type": "South Indian",
+      "recent_orders": 58,
+      "order_growth_pct": -20.55,
+      "recent_rating": 3.65,
+      "rating_change": -0.02,
+      "recent_delay": 0.53,
+      "recent_on_time": 0.55,
+      "risk_score": 46.83,
+      "risk_tier": "Watch"
+    },
+    {
+      "restaurant_id": "R015",
+      "name": "Minerva Corner",
+      "area": "Madhapur",
+      "cuisine_type": "Multi-cuisine",
+      "recent_orders": 72,
+      "order_growth_pct": -15.29,
+      "recent_rating": 3.82,
+      "rating_change": -0.03,
+      "recent_delay": 2.39,
+      "recent_on_time": 0.47,
+      "risk_score": 46.09,
+      "risk_tier": "Watch"
+    },
+    {
+      "restaurant_id": "R004",
+      "name": "Metro Cafe",
+      "area": "Gachibowli",
+      "cuisine_type": "Chinese",
+      "recent_orders": 73,
+      "order_growth_pct": -20.65,
+      "recent_rating": 4.19,
+      "rating_change": 0.05,
+      "recent_delay": 0.1,
+      "recent_on_time": 0.53,
+      "risk_score": 45.36,
+      "risk_tier": "Watch"
+    },
+    {
+      "restaurant_id": "R065",
+      "name": "Bowl Company Kitchen",
+      "area": "Begumpet",
+      "cuisine_type": "Fast Food",
+      "recent_orders": 62,
+      "order_growth_pct": -21.52,
+      "recent_rating": 4.52,
+      "rating_change": 0.09,
+      "recent_delay": -2.88,
+      "recent_on_time": 0.61,
+      "risk_score": 44.34,
+      "risk_tier": "Watch"
+    },
+    {
+      "restaurant_id": "R079",
+      "name": "Metro Corner",
+      "area": "Secunderabad",
+      "cuisine_type": "Chinese",
+      "recent_orders": 69,
+      "order_growth_pct": -11.54,
+      "recent_rating": 4.08,
+      "rating_change": 0.01,
+      "recent_delay": 3.68,
+      "recent_on_time": 0.46,
+      "risk_score": 41.86,
+      "risk_tier": "Watch"
+    },
+    {
+      "restaurant_id": "R074",
+      "name": "Green Fork House",
+      "area": "Secunderabad",
+      "cuisine_type": "Pizza",
+      "recent_orders": 73,
+      "order_growth_pct": -18.89,
+      "recent_rating": 3.62,
+      "rating_change": -0.04,
+      "recent_delay": -1.19,
+      "recent_on_time": 0.68,
+      "risk_score": 40.43,
+      "risk_tier": "Watch"
+    },
+    {
+      "restaurant_id": "R040",
+      "name": "Cafe 45 Kitchen",
+      "area": "Jubilee Hills",
+      "cuisine_type": "Multi-cuisine",
+      "recent_orders": 67,
+      "order_growth_pct": -9.46,
+      "recent_rating": 3.58,
+      "rating_change": -0.22,
+      "recent_delay": 0.16,
+      "recent_on_time": 0.54,
+      "risk_score": 40.09,
+      "risk_tier": "Watch"
+    },
+    {
+      "restaurant_id": "R073",
+      "name": "Daily Kitchen Kitchen",
+      "area": "Secunderabad",
+      "cuisine_type": "Cafe",
+      "recent_orders": 72,
+      "order_growth_pct": -8.86,
+      "recent_rating": 3.98,
+      "rating_change": -0.17,
+      "recent_delay": 1.34,
+      "recent_on_time": 0.53,
+      "risk_score": 39.39,
+      "risk_tier": "Watch"
+    },
+    {
+      "restaurant_id": "R047",
+      "name": "Cafe 45 Corner",
+      "area": "Kukatpally",
+      "cuisine_type": "South Indian",
+      "recent_orders": 71,
+      "order_growth_pct": -13.41,
+      "recent_rating": 4.43,
+      "rating_change": -0.01,
+      "recent_delay": 0.65,
+      "recent_on_time": 0.49,
+      "risk_score": 36.93,
+      "risk_tier": "Watch"
+    },
+    {
+      "restaurant_id": "R067",
+      "name": "Green Fork Express",
+      "area": "Begumpet",
+      "cuisine_type": "Desserts",
+      "recent_orders": 66,
+      "order_growth_pct": -14.29,
+      "recent_rating": 4.44,
+      "rating_change": 0.03,
+      "recent_delay": -0.4,
+      "recent_on_time": 0.58,
+      "risk_score": 33.95,
+      "risk_tier": "Watch"
+    },
+    {
+      "restaurant_id": "R024",
+      "name": "Daily Kitchen Kitchen",
+      "area": "HITEC City",
+      "cuisine_type": "Chinese",
+      "recent_orders": 81,
+      "order_growth_pct": -5.81,
+      "recent_rating": 3.78,
+      "rating_change": -0.04,
+      "recent_delay": 2.16,
+      "recent_on_time": 0.42,
+      "risk_score": 32.63,
+      "risk_tier": "Watch"
+    },
+    {
+      "restaurant_id": "R017",
+      "name": "Charminar Kitchen",
+      "area": "HITEC City",
+      "cuisine_type": "Desserts",
+      "recent_orders": 86,
+      "order_growth_pct": -9.47,
+      "recent_rating": 4.5,
+      "rating_change": -0.07,
+      "recent_delay": 0.13,
+      "recent_on_time": 0.51,
+      "risk_score": 32.15,
+      "risk_tier": "Watch"
+    },
+    {
+      "restaurant_id": "R006",
+      "name": "Urban Tadka Foods",
+      "area": "Gachibowli",
+      "cuisine_type": "Healthy",
+      "recent_orders": 75,
+      "order_growth_pct": -5.06,
+      "recent_rating": 3.65,
+      "rating_change": -0.04,
+      "recent_delay": 2.85,
+      "recent_on_time": 0.51,
+      "risk_score": 30.61,
+      "risk_tier": "Watch"
+    },
+    {
+      "restaurant_id": "R016",
+      "name": "Bowl Company Kitchen",
+      "area": "Madhapur",
+      "cuisine_type": "Biryani",
+      "recent_orders": 74,
+      "order_growth_pct": -1.33,
+      "recent_rating": 3.8,
+      "rating_change": -0.05,
+      "recent_delay": 3.83,
+      "recent_on_time": 0.43,
+      "risk_score": 29.99,
+      "risk_tier": "Stable"
+    },
+    {
+      "restaurant_id": "R046",
+      "name": "Green Fork Foods",
+      "area": "Kukatpally",
+      "cuisine_type": "Biryani",
+      "recent_orders": 95,
+      "order_growth_pct": 6.74,
+      "recent_rating": 3.73,
+      "rating_change": -0.0,
+      "recent_delay": 5.31,
+      "recent_on_time": 0.39,
+      "risk_score": 29.94,
+      "risk_tier": "Stable"
+    },
+    {
+      "restaurant_id": "R072",
+      "name": "Metro Kitchen",
+      "area": "Begumpet",
+      "cuisine_type": "South Indian",
+      "recent_orders": 67,
+      "order_growth_pct": -6.94,
+      "recent_rating": 4.17,
+      "rating_change": 0.04,
+      "recent_delay": 1.33,
+      "recent_on_time": 0.49,
+      "risk_score": 27.96,
+      "risk_tier": "Stable"
+    }
+  ],
+  "model_metrics": [
+    {
+      "model": "Gradient Boosting",
+      "r2": 0.9249,
+      "mae": 3.2572,
+      "rmse": 4.112
+    },
+    {
+      "model": "Linear Regression",
+      "r2": 0.9224,
+      "mae": 3.3162,
+      "rmse": 4.1806
+    },
+    {
+      "model": "Random Forest",
+      "r2": 0.9124,
+      "mae": 3.4902,
+      "rmse": 4.4412
+    }
+  ],
+  "feature_importance": [
+    {
+      "feature": "distance_km",
+      "importance": 0.9959
+    },
+    {
+      "feature": "traffic_density",
+      "importance": 0.2444
+    },
+    {
+      "feature": "prep_time_min",
+      "importance": 0.1449
+    },
+    {
+      "feature": "weather_condition",
+      "importance": 0.1273
+    },
+    {
+      "feature": "multiple_deliveries",
+      "importance": 0.0544
+    },
+    {
+      "feature": "is_peak_hour",
+      "importance": 0.0135
+    },
+    {
+      "feature": "event_type",
+      "importance": 0.0028
+    },
+    {
+      "feature": "is_event",
+      "importance": 0.0027
+    },
+    {
+      "feature": "restaurant_area",
+      "importance": 0.0016
+    },
+    {
+      "feature": "order_hour",
+      "importance": -0.0
+    },
+    {
+      "feature": "day_of_week",
+      "importance": -0.0
+    },
+    {
+      "feature": "vehicle_type",
+      "importance": -0.0
+    }
+  ],
+  "statistical_tests": [
+    {
+      "test": "Rain vs dry delivery time",
+      "method": "Welch two-sample t-test",
+      "statistic": 56.4578,
+      "p_value": 0.0,
+      "effect_min": 13.31,
+      "conclusion": "Statistically significant"
+    },
+    {
+      "test": "Traffic density delivery time",
+      "method": "One-way ANOVA",
+      "statistic": 2323.7227,
+      "p_value": 0.0,
+      "effect_min": 20.29,
+      "conclusion": "Statistically significant"
+    },
+    {
+      "test": "Event vs normal delivery time",
+      "method": "Welch two-sample t-test",
+      "statistic": 12.3808,
+      "p_value": 1.0006150595291863e-31,
+      "effect_min": 7.75,
+      "conclusion": "Statistically significant"
+    }
+  ],
+  "simulator": {
+    "base_minutes": 39.75,
+    "rain_penalty": 5.8,
+    "heavy_rain_penalty": 11.4,
+    "peak_penalty": 5.2,
+    "event_penalty": 6.9,
+    "partner_reduction_per_person": 1.35,
+    "minimum_minutes": 18
+  }
+}

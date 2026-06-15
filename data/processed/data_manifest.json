@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-06-15T12:58:41",
+  "seed": 42,
+  "orders": 24000,
+  "restaurants": 80,
+  "delivery_partners": 450,
+  "areas": [
+    "Gachibowli",
+    "Madhapur",
+    "HITEC City",
+    "Banjara Hills",
+    "Jubilee Hills",
+    "Kukatpally",
+    "Kondapur",
+    "Ameerpet",
+    "Begumpet",
+    "Secunderabad"
+  ],
+  "data_type": "synthetic portfolio demonstration data"
+}

@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+node_modules/
+dashboard/dist/
+models/*.joblib
+data/raw/*
+!data/raw/.gitkeep
+

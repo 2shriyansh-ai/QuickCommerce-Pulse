@@ -1,0 +1,4 @@
+test,method,statistic,p_value,effect_min,conclusion
+Rain vs dry delivery time,Welch two-sample t-test,56.45781085056625,0.0,13.3060838612368,Statistically significant
+Traffic density delivery time,One-way ANOVA,2323.7226742713196,0.0,20.292535949674825,Statistically significant
+Event vs normal delivery time,Welch two-sample t-test,12.380806202905182,1.0006150595291863e-31,7.753325133135981,Statistically significant
