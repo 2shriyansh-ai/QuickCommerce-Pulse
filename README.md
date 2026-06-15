@@ -2,183 +2,57 @@
 
 # QuickCommerce Pulse
 
-### Hyderabad Delivery Intelligence Platform
+### Real-Data Delivery Benchmark and Hyderabad Restaurant Intelligence
 
-An end-to-end analytics product that predicts delivery time, detects restaurant
-risk, quantifies festival and cricket surges, and converts operating metrics
-into an executive-ready action brief.
+A portfolio analytics product combining delivery-time prediction, statistical
+testing, PostgreSQL analysis, restaurant attention scoring, Excel reporting,
+and a React decision interface.
 
 ![Python](https://img.shields.io/badge/Python-ML%20%26%20Statistics-3776AB?style=flat-square&logo=python&logoColor=white)
-![React](https://img.shields.io/badge/React-Operations%20Cockpit-20232A?style=flat-square&logo=react&logoColor=61DAFB)
+![React](https://img.shields.io/badge/React-Decision%20Dashboard-20232A?style=flat-square&logo=react&logoColor=61DAFB)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Analytics-336791?style=flat-square&logo=postgresql&logoColor=white)
 ![Excel](https://img.shields.io/badge/Excel-Ops%20Report-217346?style=flat-square&logo=microsoft-excel&logoColor=white)
-![Gemini](https://img.shields.io/badge/Gemini-AI%20Briefing-4285F4?style=flat-square&logo=google&logoColor=white)
 
 </div>
 
 ---
 
-## The Product Question
+## Overview
 
-Delivery dashboards usually explain what already happened. QuickCommerce Pulse
-asks a more useful question:
+QuickCommerce Pulse uses two real public Kaggle datasets:
 
-> Where will the network fail next, why is it happening, and what should an
-> operations manager change before the next rush?
+1. **1,000 delivery records** for delivery-time prediction and operational analysis.
+2. **8,680 Swiggy restaurant listings**, filtered to **1,075 Hyderabad restaurants**.
 
-The project combines SQL, statistical testing, machine learning, restaurant
-risk scoring, Excel reporting, and a React decision cockpit into one
-reproducible workflow.
+The datasets have no shared restaurant or order identifier. Therefore, they are
+analyzed as two connected but separate tracks rather than being artificially
+joined.
 
 ## Current Results
 
 | Metric | Result |
 |---|---:|
-| Orders analyzed | 24,000 |
-| Hyderabad localities | 10 |
-| Restaurants scored | 80 |
-| Best model | Gradient Boosting |
-| Holdout R² | 0.925 |
-| Mean absolute error | 3.26 minutes |
-| Critical restaurants flagged | 11 |
-| Highest-pressure locality | Kukatpally |
-| Cricket-period delivery lift | 20.2% |
+| Delivery records | 1,000 |
+| Hyderabad restaurant listings | 1,075 |
+| Normalized Hyderabad areas | 147 |
+| Average delivery time | 56.7 minutes |
+| Best prediction model | Linear Regression |
+| Holdout R2 | 0.826 |
+| Mean absolute error | 5.9 minutes |
+| Priority restaurant listings | 271 |
 
-All current figures are generated from the repository's fixed-seed synthetic
-operations dataset. This is stated explicitly to keep the portfolio evidence
-honest and reproducible. The raw-data adapter is designed for the referenced
-Kaggle datasets.
+## Track 1: Delivery-Time Intelligence
 
-## What Makes It Different
+The delivery dataset contains:
 
-### Restaurant risk, not just delivery prediction
-
-Each restaurant receives a composite intervention score based on:
-
-- Recent order-volume decline
-- Rating deterioration
-- Average delivery delay
-- On-time reliability
-
-The result is a ranked risk board with `Stable`, `Watch`, and `Critical`
-segments.
-
-### Hyderabad operating context
-
-The network is modeled across Gachibowli, Madhapur, HITEC City, Banjara Hills,
-Jubilee Hills, Kukatpally, Kondapur, Ameerpet, Begumpet, and Secunderabad.
-
-### Event and weather intelligence
-
-The analysis isolates rain, traffic, festivals, and Hyderabad cricket matches.
-Welch t-tests and ANOVA quantify whether observed effects are statistically
-significant.
-
-### Decision simulator
-
-The React cockpit lets an operator change:
-
-- Locality
-- Weather severity
-- Peak-hour pressure
-- Festival or cricket demand
-- Additional delivery partners
-
-It immediately estimates the resulting delivery time and recommends an
-operating action.
-
-### AI executive layer
-
-A deterministic briefing is always generated from verified metrics. An
-optional Gemini script can rewrite that context into a concise executive
-summary without inventing values.
-
-## Product Surfaces
-
-### Operations Cockpit
-
-- Network KPI cards
-- Hyderabad pressure map
-- Locality ranking
-- Hourly delivery pulse
-- Festival and cricket comparison
-
-### Restaurant Risk Board
-
-- Sortable intervention queue
-- Volume and rating movement
-- Delay and reliability metrics
-- Recommended operating playbook
-
-### Model Lab
-
-- Holdout model comparison
-- R², MAE, and RMSE
-- Permutation feature importance
-- Statistical hypothesis results
-
-### Excel Operations Report
-
-The generated workbook includes:
-
-- Executive dashboard
-- Area performance table
-- Restaurant risk board
-- Statistical validation
-- Model performance and feature importance
-
-![Excel operations dashboard](excel/ops_dashboard_preview.png)
-
-## Architecture
-
-```mermaid
-flowchart LR
-    A[Raw or generated operations data] --> B[Processed relational contract]
-    B --> C[PostgreSQL analytics]
-    B --> D[Statistics and ML pipeline]
-    D --> E[Risk scores and model artifacts]
-    C --> F[Excel operations report]
-    E --> F
-    E --> G[Dashboard JSON contract]
-    G --> H[React operations cockpit]
-    G --> I[Deterministic executive brief]
-    I --> J[Optional Gemini rewrite]
-```
-
-## Repository Structure
-
-```text
-quickcommerce-pulse/
-|-- data/
-|   |-- raw/                  # Kaggle source integration point
-|   `-- processed/            # Reproducible analysis-ready data
-|-- sql/
-|   |-- schema.sql
-|   `-- analysis_queries.sql
-|-- scripts/
-|   |-- generate_demo_data.py
-|   |-- run_analysis.py
-|   `-- build_ops_workbook.mjs
-|-- analysis/                 # Risk, statistics, and model outputs
-|-- models/                   # Trained delivery-time pipeline
-|-- ai_insights/              # Executive summary layer
-|-- excel/                    # Generated operations workbook
-|-- dashboard/                # React decision cockpit
-|-- tests/                    # Pipeline and data-contract tests
-`-- docs/                     # Project brief and data replacement guide
-```
-
-## Analytical Methods
-
-### Feature engineering
-
-- Haversine delivery distance
-- Order hour and day of week
-- Peak-hour indicator
-- Festival and cricket event indicator
-- Weather and traffic categories
-- Multi-delivery batching
-- Restaurant preparation time
+- Distance
+- Weather
+- Traffic level
+- Time of day
+- Vehicle type
+- Preparation time
+- Courier experience
+- Delivery time
 
 ### Models compared
 
@@ -186,19 +60,154 @@ quickcommerce-pulse/
 - Random Forest Regressor
 - Gradient Boosting Regressor
 
-The selected model is determined by holdout R² rather than hardcoded preference.
+Linear Regression currently performs best:
 
-### Statistical tests
+| Model | R2 | MAE | RMSE |
+|---|---:|---:|---:|
+| Linear Regression | 0.826 | 5.90 | 8.83 |
+| Random Forest | 0.797 | 6.60 | 9.54 |
+| Gradient Boosting | 0.793 | 6.51 | 9.63 |
 
-| Hypothesis | Method | Current effect |
+### Statistical findings
+
+| Question | Method | Result |
 |---|---|---:|
-| Rain increases delivery time | Welch t-test | +13.3 min |
-| Traffic levels differ | One-way ANOVA | 20.3 min range |
-| Events increase delivery time | Welch t-test | +7.8 min |
+| Rainy vs clear delivery time | Welch t-test | Rainy orders average +6.64 min |
+| Traffic-level differences | One-way ANOVA | 11.92 min range |
+| Courier experience relationship | Pearson correlation | -0.089 |
 
-## Run the Project
+All three relationships are statistically significant at the 5% threshold.
 
-### 1. Create the analytics environment
+## Track 2: Hyderabad Restaurant Intelligence
+
+The Swiggy dataset is filtered to Hyderabad and used to compare:
+
+- Listed delivery time
+- Average rating
+- Review volume
+- Price
+- Cuisine
+- Locality
+
+### Operational attention score
+
+Each restaurant receives a transparent cross-sectional score:
+
+```text
+Attention Score =
+45% listed delivery pressure
++ 35% rating weakness
++ 20% review uncertainty
+```
+
+Listings are segmented into:
+
+- `Stable`
+- `Watch`
+- `Priority`
+
+This is **not a churn prediction model** because the supplied dataset has no
+historical order or rating trend.
+
+## Dashboard
+
+The React interface contains:
+
+### Data Command Center
+
+- Real-data KPIs
+- Hyderabad area comparison
+- Weather effects
+- Traffic effects
+
+### Restaurant Attention
+
+- Ranked Hyderabad listings
+- Rating and review evidence
+- Delivery-time pressure
+- Score explanation
+
+### Model Lab
+
+- Holdout model comparison
+- R2, MAE, and RMSE
+- Feature importance
+- Statistical tests
+
+### Delivery Simulator
+
+The simulator estimates delivery time from:
+
+- Distance
+- Preparation time
+- Weather
+- Traffic
+- Time of day
+- Courier experience
+
+It uses observed category differences and simple numeric slopes. It is an
+explanatory tool and does not call the trained model directly.
+
+## Excel Operations Report
+
+The generated workbook includes:
+
+- Executive dashboard
+- Hyderabad area intelligence
+- Restaurant attention board
+- Statistical validation
+- Model performance and feature importance
+
+![Excel dashboard](excel/ops_dashboard_preview.png)
+
+## Architecture
+
+```mermaid
+flowchart LR
+    A[Delivery CSV] --> B[Cleaning and imputation]
+    B --> C[Statistics and ML]
+    D[Swiggy CSV] --> E[Hyderabad filter and area normalization]
+    E --> F[Area metrics and attention score]
+    C --> G[Dashboard JSON]
+    F --> G
+    C --> H[Excel report]
+    F --> H
+    G --> I[React dashboard]
+```
+
+## Repository Structure
+
+```text
+quickcommerce-pulse/
+|-- data/
+|   |-- raw/                    # User-downloaded Kaggle files, ignored by Git
+|   `-- processed/              # Cleaned files and manifest
+|-- scripts/
+|   |-- prepare_real_data.py
+|   |-- run_analysis.py
+|   `-- build_ops_workbook.mjs
+|-- analysis/                   # Model, statistics, area, and attention outputs
+|-- sql/                        # PostgreSQL schema and analytical queries
+|-- models/                     # Trained prediction pipeline
+|-- excel/                      # Generated workbook and previews
+|-- dashboard/                  # React interface
+|-- ai_insights/                # Optional Gemini executive summary
+|-- tests/                      # Data-contract and model tests
+`-- docs/data_setup.md
+```
+
+## Run Locally
+
+### 1. Add datasets
+
+Place the following files inside `data/raw/`:
+
+```text
+Food_Delivery_Times.csv
+swiggy.csv
+```
+
+### 2. Install Python dependencies
 
 ```bash
 python -m venv .venv
@@ -206,20 +215,15 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-### 2. Generate data and analysis
+### 3. Run the pipeline
 
 ```bash
-python scripts/generate_demo_data.py
+python scripts/prepare_real_data.py
 python scripts/run_analysis.py
-```
-
-### 3. Build the Excel report
-
-```bash
 node scripts/build_ops_workbook.mjs
 ```
 
-### 4. Run the dashboard
+### 4. Start the dashboard
 
 ```bash
 cd dashboard
@@ -230,48 +234,27 @@ npm run dev
 ### 5. Validate
 
 ```bash
-python -m unittest discover tests
+python -m unittest discover tests -v
 cd dashboard
 npm run lint
 npm run build
 ```
 
-## Data Sources and Integrity
+## Data Limitations
 
-The project brief references:
+- The delivery dataset contains no city, restaurant, date, or event field.
+- It includes categories such as `Snowy`, so it is not Hyderabad-specific.
+- The restaurant and delivery datasets cannot be joined at row level.
+- Listed restaurant delivery time is not the same as observed order-level delivery time.
+- The attention score is a prioritization heuristic, not churn probability.
 
-- Kaggle Food Delivery Time Prediction dataset
-- Kaggle Swiggy Restaurants dataset
-- Open-Meteo historical weather API
+These limitations are deliberately visible in the code, dashboard, and
+documentation.
 
-These authenticated raw files were not available during the first build.
-Therefore, the repository includes a documented synthetic generator instead
-of silently claiming simulated records as observed business data.
+## Resume Narrative
 
-See [the replacement guide](docs/data_replacement_guide.md) for the source-data
-contract and migration steps.
-
-## Roadmap
-
-- Add authenticated Kaggle ingestion adapters
-- Enrich historical records with Open-Meteo weather
-- Load the relational model into PostgreSQL
-- Publish the React cockpit on Vercel
-- Add map tiles and locality polygons
-- Add SHAP explanations and prediction intervals
-- Schedule daily executive brief generation
-- Build a Power BI companion dashboard
-
-## Portfolio Narrative
-
-> Built a full-stack Hyderabad delivery intelligence platform across SQL,
-> statistics, machine learning, Excel, and React. Compared three prediction
-> models, achieved 0.925 holdout R² with a Gradient Boosting model, quantified
-> rain and event-driven delay effects, and created a restaurant intervention
-> score plus an operations what-if simulator.
-
----
-
-Built as a transparent, reproducible analytics product rather than a dashboard
-mockup.
-
+> Built a real-data analytics product using 1,000 delivery records and 1,075
+> Hyderabad Swiggy restaurant listings. Trained and compared three delivery-time
+> models, achieving 0.826 holdout R2 and 5.9-minute MAE, validated weather,
+> traffic, and courier-experience effects statistically, and created a
+> transparent restaurant attention score with Excel and React reporting layers.

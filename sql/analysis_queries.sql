@@ -1,85 +1,66 @@
--- 1. Executive KPI summary
+-- 1. Delivery benchmark summary
 SELECT
-    COUNT(*) AS total_orders,
-    ROUND(AVG(time_taken_min), 2) AS avg_delivery_time_min,
-    ROUND(100.0 * AVG(is_on_time::INT), 2) AS on_time_rate_pct,
-    ROUND(AVG(delay_min), 2) AS avg_delay_min,
-    ROUND(SUM(order_value), 2) AS gross_order_value
-FROM orders;
+    COUNT(*) AS delivery_records,
+    ROUND(AVG(delivery_time_min), 2) AS avg_delivery_time_min,
+    ROUND(100.0 * AVG(under_60_min::INT), 2) AS under_60_rate_pct,
+    ROUND(AVG(distance_km), 2) AS avg_distance_km
+FROM delivery_records;
 
--- 2. Locality performance with volatility
+-- 2. Weather comparison
 SELECT
-    restaurant_area,
-    COUNT(*) AS orders,
-    ROUND(AVG(time_taken_min), 2) AS avg_delivery_time_min,
-    ROUND(STDDEV_SAMP(time_taken_min), 2) AS delivery_time_stddev,
-    ROUND(100.0 * AVG(is_on_time::INT), 2) AS on_time_rate_pct
-FROM orders
-GROUP BY restaurant_area
+    weather,
+    COUNT(*) AS records,
+    ROUND(AVG(delivery_time_min), 2) AS avg_delivery_time_min,
+    ROUND(100.0 * AVG(under_60_min::INT), 2) AS under_60_rate_pct
+FROM delivery_records
+GROUP BY weather
 ORDER BY avg_delivery_time_min DESC;
 
--- 3. Weather and traffic interaction
+-- 3. Traffic comparison
 SELECT
-    weather_condition,
-    traffic_density,
-    COUNT(*) AS orders,
-    ROUND(AVG(time_taken_min), 2) AS avg_delivery_time_min,
-    ROUND(AVG(delay_min), 2) AS avg_delay_min
-FROM orders
-GROUP BY weather_condition, traffic_density
+    traffic_level,
+    COUNT(*) AS records,
+    ROUND(AVG(delivery_time_min), 2) AS avg_delivery_time_min,
+    ROUND(STDDEV_SAMP(delivery_time_min), 2) AS delivery_time_stddev
+FROM delivery_records
+GROUP BY traffic_level
 ORDER BY avg_delivery_time_min DESC;
 
--- 4. Festival and cricket event impact
+-- 4. Hyderabad area intelligence
 SELECT
-    COALESCE(NULLIF(event_type, 'None'), 'Normal Day') AS period_type,
-    COUNT(*) AS orders,
-    ROUND(AVG(time_taken_min), 2) AS avg_delivery_time_min,
-    ROUND(100.0 * AVG(is_on_time::INT), 2) AS on_time_rate_pct
-FROM orders
-GROUP BY period_type
-ORDER BY avg_delivery_time_min DESC;
+    area,
+    COUNT(*) AS restaurants,
+    ROUND(AVG(delivery_time_min), 2) AS avg_listed_delivery_min,
+    ROUND(AVG(avg_rating), 2) AS avg_rating,
+    ROUND(PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY price)::NUMERIC, 2) AS median_price,
+    SUM(total_ratings) AS total_reviews
+FROM hyderabad_restaurants
+GROUP BY area
+HAVING COUNT(*) >= 5
+ORDER BY avg_listed_delivery_min DESC;
 
--- 5. Restaurant risk board using recent-vs-prior windows
-WITH restaurant_windows AS (
-    SELECT
-        restaurant_id,
-        COUNT(*) FILTER (WHERE order_date >= DATE '2025-10-01') AS recent_orders,
-        COUNT(*) FILTER (WHERE order_date BETWEEN DATE '2025-07-01' AND DATE '2025-09-30') AS prior_orders,
-        AVG(customer_rating) FILTER (WHERE order_date >= DATE '2025-10-01') AS recent_rating,
-        AVG(customer_rating) FILTER (WHERE order_date BETWEEN DATE '2025-07-01' AND DATE '2025-09-30') AS prior_rating,
-        AVG(delay_min) FILTER (WHERE order_date >= DATE '2025-10-01') AS recent_delay
-    FROM orders
-    GROUP BY restaurant_id
-)
+-- 5. Restaurant attention board
 SELECT
-    r.name,
-    r.area,
-    w.recent_orders,
-    ROUND(100.0 * (w.recent_orders - w.prior_orders) / NULLIF(w.prior_orders, 0), 2) AS order_growth_pct,
-    ROUND(w.recent_rating - w.prior_rating, 2) AS rating_change,
-    ROUND(w.recent_delay, 2) AS recent_avg_delay,
-    ROUND(
-        LEAST(100, GREATEST(0,
-            40 * GREATEST(0, (w.prior_orders - w.recent_orders)::NUMERIC / NULLIF(w.prior_orders, 0))
-            + 35 * GREATEST(0, w.prior_rating - w.recent_rating)
-            + 25 * GREATEST(0, w.recent_delay / 15.0)
-        )),
-        1
-    ) AS risk_score
-FROM restaurant_windows w
-JOIN restaurants r USING (restaurant_id)
-ORDER BY risk_score DESC
-LIMIT 20;
+    name,
+    area,
+    primary_cuisine,
+    avg_rating,
+    total_ratings,
+    delivery_time_min,
+    ROUND(attention_score, 1) AS attention_score,
+    attention_tier
+FROM hyderabad_restaurants
+ORDER BY attention_score DESC
+LIMIT 50;
 
--- 6. Hourly staffing pressure
+-- 6. Cuisine opportunity view
 SELECT
-    restaurant_area,
-    order_hour,
-    COUNT(*) AS orders,
-    ROUND(AVG(time_taken_min), 2) AS avg_delivery_time_min,
-    ROUND(100.0 * AVG(is_on_time::INT), 2) AS on_time_rate_pct
-FROM orders
-GROUP BY restaurant_area, order_hour
-HAVING COUNT(*) >= 20
-ORDER BY restaurant_area, order_hour;
-
+    primary_cuisine,
+    COUNT(*) AS restaurants,
+    ROUND(AVG(avg_rating), 2) AS avg_rating,
+    ROUND(AVG(delivery_time_min), 2) AS avg_delivery_time_min,
+    ROUND(AVG(price), 2) AS avg_price
+FROM hyderabad_restaurants
+GROUP BY primary_cuisine
+HAVING COUNT(*) >= 10
+ORDER BY restaurants DESC;

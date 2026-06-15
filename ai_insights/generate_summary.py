@@ -25,15 +25,19 @@ def main():
     context = {
         "kpis": payload["kpis"],
         "areas": payload["area_metrics"],
-        "events": payload["event_metrics"],
-        "top_risk_restaurants": payload["restaurant_risk"][:5],
+        "weather": payload["weather_metrics"],
+        "traffic": payload["traffic_metrics"],
+        "top_attention_restaurants": payload["restaurant_attention"][:5],
         "model_metrics": payload["model_metrics"],
+        "limitations": payload["limitations"],
     }
     prompt = (
-        "You are a quick-commerce operations analyst. Write a concise four-sentence "
-        "executive briefing using only the metrics below. State the biggest locality "
-        "risk, event/weather impact, restaurant risk action, and model confidence. "
-        "Do not invent metrics.\n\n" + json.dumps(context)
+        "You are a data analyst. Write a concise four-sentence executive briefing "
+        "using only the metrics below. Keep the delivery benchmark and Hyderabad "
+        "restaurant listing analysis separate because they have no shared key. "
+        "Mention model confidence, weather or traffic evidence, the highest-attention "
+        "restaurant pattern, and one limitation. Do not invent metrics.\n\n"
+        + json.dumps(context)
     )
     body = json.dumps({
         "contents": [{"parts": [{"text": prompt}]}],
@@ -57,4 +61,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

@@ -1,20 +1,14 @@
 {
-  "generated_at": "2026-06-15T12:58:41",
-  "seed": 42,
-  "orders": 24000,
-  "restaurants": 80,
-  "delivery_partners": 450,
-  "areas": [
-    "Gachibowli",
-    "Madhapur",
-    "HITEC City",
-    "Banjara Hills",
-    "Jubilee Hills",
-    "Kukatpally",
-    "Kondapur",
-    "Ameerpet",
-    "Begumpet",
-    "Secunderabad"
-  ],
-  "data_type": "synthetic portfolio demonstration data"
+  "generated_at": "2026-06-15T14:50:36",
+  "data_type": "real public Kaggle datasets supplied by the project owner",
+  "delivery_records": 1000,
+  "hyderabad_restaurants": 1075,
+  "normalized_areas": 147,
+  "delivery_missing_values_after_cleaning": 0,
+  "limitations": [
+    "The delivery benchmark has no city, date, event, or restaurant identifier.",
+    "The two datasets have no shared key and are analyzed as separate tracks.",
+    "The delivery benchmark contains non-Hyderabad weather categories such as Snowy.",
+    "The restaurant attention score is a cross-sectional heuristic, not churn prediction."
+  ]
 }

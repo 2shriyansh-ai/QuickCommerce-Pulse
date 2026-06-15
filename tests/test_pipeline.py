@@ -7,45 +7,41 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 
 
-class PipelineTests(unittest.TestCase):
+class RealDataPipelineTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.orders = pd.read_csv(ROOT / "data" / "processed" / "orders.csv", keep_default_na=False)
-        cls.risk = pd.read_csv(ROOT / "analysis" / "restaurant_risk_scores.csv")
+        cls.delivery = pd.read_csv(ROOT / "data" / "processed" / "delivery_records.csv")
+        cls.restaurants = pd.read_csv(ROOT / "data" / "processed" / "hyderabad_restaurants.csv")
+        cls.attention = pd.read_csv(ROOT / "analysis" / "restaurant_attention_scores.csv")
         cls.metrics = pd.read_csv(ROOT / "analysis" / "model_metrics.csv")
         cls.dashboard = json.loads(
             (ROOT / "dashboard" / "public" / "data" / "pulse_data.json").read_text(encoding="utf-8")
         )
 
-    def test_expected_data_volume(self):
-        self.assertEqual(len(self.orders), 24000)
-        self.assertEqual(self.orders["restaurant_area"].nunique(), 10)
-        self.assertEqual(self.orders["restaurant_id"].nunique(), 80)
+    def test_real_dataset_volume(self):
+        self.assertEqual(len(self.delivery), 1000)
+        self.assertEqual(len(self.restaurants), 1075)
+        self.assertTrue(self.restaurants["city"].eq("Hyderabad").all())
 
-    def test_delivery_values_are_valid(self):
-        self.assertGreaterEqual(self.orders["time_taken_min"].min(), 16)
-        self.assertTrue(self.orders["distance_km"].between(0.5, 40).all())
-        self.assertTrue(self.orders["customer_rating"].between(1, 5).all())
+    def test_cleaning_removed_missing_values(self):
+        self.assertEqual(int(self.delivery.isna().sum().sum()), 0)
+        self.assertEqual(self.restaurants["area"].nunique(), 147)
 
-    def test_model_meets_portfolio_threshold(self):
+    def test_model_has_useful_holdout_performance(self):
         best = self.metrics.sort_values("r2", ascending=False).iloc[0]
-        self.assertGreater(best["r2"], 0.75)
-        self.assertLess(best["mae"], 5)
+        self.assertGreater(best["r2"], 0.70)
+        self.assertLess(best["mae"], 8)
 
-    def test_risk_board_has_actionable_segments(self):
-        self.assertIn("Critical", set(self.risk["risk_tier"]))
-        self.assertIn("Watch", set(self.risk["risk_tier"]))
-        self.assertGreater((self.risk["risk_tier"] == "Critical").sum(), 0)
+    def test_attention_score_is_bounded_and_segmented(self):
+        self.assertTrue(self.attention["attention_score"].between(0, 100).all())
+        self.assertEqual(set(self.attention["attention_tier"]), {"Stable", "Watch", "Priority"})
 
-    def test_dashboard_contract(self):
-        required = {
-            "kpis", "area_metrics", "restaurant_risk", "model_metrics",
-            "statistical_tests", "simulator", "executive_summary",
-        }
-        self.assertTrue(required.issubset(self.dashboard))
-        self.assertEqual(self.dashboard["kpis"]["total_orders"], 24000)
+    def test_dashboard_preserves_separate_track_disclosure(self):
+        self.assertTrue(self.dashboard["metadata"]["tracks_are_separate"])
+        self.assertEqual(self.dashboard["kpis"]["delivery_records"], 1000)
+        self.assertEqual(self.dashboard["kpis"]["hyderabad_restaurants"], 1075)
+        self.assertIn("limitations", self.dashboard)
 
 
 if __name__ == "__main__":
     unittest.main()
-

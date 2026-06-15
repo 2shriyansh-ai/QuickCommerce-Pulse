@@ -7,4 +7,4 @@ dashboard/dist/
 models/*.joblib
 data/raw/*
 !data/raw/.gitkeep
-
+data/processed/*.csv

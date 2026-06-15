@@ -1,4 +1,4 @@
-"""Run the statistical, machine-learning, and business-risk pipeline."""
+"""Run real-data delivery ML and Hyderabad restaurant intelligence."""
 
 from __future__ import annotations
 
@@ -20,293 +20,225 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "processed"
-MODELS = ROOT / "models"
 ANALYSIS = ROOT / "analysis"
+MODELS = ROOT / "models"
 DASHBOARD_DATA = ROOT / "dashboard" / "public" / "data"
 
-TARGET = "time_taken_min"
-NUMERIC_FEATURES = [
-    "order_hour", "distance_km", "multiple_deliveries", "is_event",
-    "is_peak_hour", "prep_time_min",
-]
-CATEGORICAL_FEATURES = [
-    "restaurant_area", "weather_condition", "traffic_density",
-    "vehicle_type", "event_type", "day_of_week",
-]
+NUMERIC_FEATURES = ["distance_km", "preparation_time_min", "courier_experience_yrs"]
+CATEGORICAL_FEATURES = ["weather", "traffic_level", "time_of_day", "vehicle_type"]
+TARGET = "delivery_time_min"
 
 
-def round_records(frame, digits=2):
-    result = frame.copy()
-    numeric = result.select_dtypes(include="number").columns
-    result[numeric] = result[numeric].round(digits)
-    return result.replace({np.nan: None}).to_dict(orient="records")
+def records(frame, digits=3):
+    output = frame.copy()
+    numeric = output.select_dtypes(include="number").columns
+    output[numeric] = output[numeric].round(digits)
+    return output.replace({np.nan: None}).to_dict(orient="records")
 
 
-def score_restaurant_risk(orders, restaurants):
-    orders = orders.copy()
-    orders["order_date"] = pd.to_datetime(orders["order_date"])
-    recent = orders[orders["order_date"] >= "2025-10-01"]
-    prior = orders[(orders["order_date"] >= "2025-07-01") & (orders["order_date"] < "2025-10-01")]
-
-    recent_metrics = recent.groupby("restaurant_id").agg(
-        recent_orders=("order_id", "count"),
-        recent_rating=("customer_rating", "mean"),
-        recent_delay=("delay_min", "mean"),
-        recent_on_time=("is_on_time", "mean"),
-    )
-    prior_metrics = prior.groupby("restaurant_id").agg(
-        prior_orders=("order_id", "count"),
-        prior_rating=("customer_rating", "mean"),
-    )
-    risk = restaurants.merge(recent_metrics, on="restaurant_id").merge(prior_metrics, on="restaurant_id")
-    risk["order_growth_pct"] = 100 * (risk["recent_orders"] - risk["prior_orders"]) / risk["prior_orders"].clip(lower=1)
-    risk["rating_change"] = risk["recent_rating"] - risk["prior_rating"]
-
-    volume_risk = (-risk["order_growth_pct"]).clip(lower=0, upper=40) / 40
-    rating_risk = (-risk["rating_change"]).clip(lower=0, upper=0.8) / 0.8
-    delay_risk = risk["recent_delay"].clip(lower=0, upper=18) / 18
-    reliability_risk = (1 - risk["recent_on_time"]).clip(0, 1)
-    risk["risk_score"] = (100 * (
-        0.35 * volume_risk
-        + 0.25 * rating_risk
-        + 0.25 * delay_risk
-        + 0.15 * reliability_risk
-    ) * 1.8).clip(0, 100)
-    risk["risk_tier"] = pd.cut(
-        risk["risk_score"],
-        bins=[-1, 30, 50, 101],
-        labels=["Stable", "Watch", "Critical"],
-    ).astype(str)
-    columns = [
-        "restaurant_id", "name", "area", "cuisine_type", "recent_orders",
-        "order_growth_pct", "recent_rating", "rating_change", "recent_delay",
-        "recent_on_time", "risk_score", "risk_tier",
-    ]
-    return risk[columns].sort_values("risk_score", ascending=False)
-
-
-def train_models(orders):
-    features = orders[NUMERIC_FEATURES + CATEGORICAL_FEATURES]
-    target = orders[TARGET]
-    x_train, x_test, y_train, y_test = train_test_split(
-        features, target, test_size=0.2, random_state=42
-    )
-
-    preprocessor = ColumnTransformer([
+def train_models(delivery):
+    x = delivery[NUMERIC_FEATURES + CATEGORICAL_FEATURES]
+    y = delivery[TARGET]
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+    preprocess = ColumnTransformer([
         ("numeric", StandardScaler(), NUMERIC_FEATURES),
         ("categorical", OneHotEncoder(handle_unknown="ignore", sparse_output=False), CATEGORICAL_FEATURES),
     ])
     candidates = {
         "Linear Regression": LinearRegression(),
         "Random Forest": RandomForestRegressor(
-            n_estimators=160, max_depth=18, min_samples_leaf=2,
-            n_jobs=-1, random_state=42,
+            n_estimators=250, max_depth=14, min_samples_leaf=2, random_state=42, n_jobs=-1
         ),
         "Gradient Boosting": GradientBoostingRegressor(
-            n_estimators=180, learning_rate=0.055, max_depth=3,
-            loss="huber", random_state=42,
+            n_estimators=180, learning_rate=0.045, max_depth=2, loss="huber", random_state=42
         ),
     }
-
-    results = []
-    fitted = {}
+    rows, fitted = [], {}
     for name, estimator in candidates.items():
-        pipeline = Pipeline([("preprocess", preprocessor), ("model", estimator)])
+        pipeline = Pipeline([("preprocess", preprocess), ("model", estimator)])
         pipeline.fit(x_train, y_train)
-        predictions = pipeline.predict(x_test)
-        results.append({
+        prediction = pipeline.predict(x_test)
+        rows.append({
             "model": name,
-            "r2": r2_score(y_test, predictions),
-            "mae": mean_absolute_error(y_test, predictions),
-            "rmse": mean_squared_error(y_test, predictions) ** 0.5,
+            "r2": r2_score(y_test, prediction),
+            "mae": mean_absolute_error(y_test, prediction),
+            "rmse": mean_squared_error(y_test, prediction) ** 0.5,
         })
         fitted[name] = pipeline
-
-    model_results = pd.DataFrame(results).sort_values("r2", ascending=False)
-    best_name = model_results.iloc[0]["model"]
-    best_pipeline = fitted[best_name]
-
-    sampled = x_test.sample(min(1800, len(x_test)), random_state=42)
-    sampled_target = y_test.loc[sampled.index]
-    importance = permutation_importance(
-        best_pipeline, sampled, sampled_target,
-        n_repeats=4, random_state=42, scoring="r2",
+    metrics = pd.DataFrame(rows).sort_values("r2", ascending=False)
+    best_name = metrics.iloc[0]["model"]
+    best_model = fitted[best_name]
+    importance_result = permutation_importance(
+        best_model, x_test, y_test, n_repeats=12, random_state=42, scoring="r2"
     )
-    importance_frame = pd.DataFrame({
+    importance = pd.DataFrame({
         "feature": NUMERIC_FEATURES + CATEGORICAL_FEATURES,
-        "importance": importance.importances_mean,
+        "importance": importance_result.importances_mean,
     }).sort_values("importance", ascending=False)
+    return best_name, best_model, metrics, importance
 
-    return best_name, best_pipeline, model_results, importance_frame
 
-
-def statistical_tests(orders):
-    rain = orders[orders["weather_condition"].isin(["Light Rain", "Heavy Rain"])][TARGET]
-    dry = orders[~orders["weather_condition"].isin(["Light Rain", "Heavy Rain"])][TARGET]
-    rain_test = stats.ttest_ind(rain, dry, equal_var=False)
-
-    traffic_groups = [
-        group[TARGET].values
-        for _, group in orders.groupby("traffic_density")
-    ]
-    traffic_anova = stats.f_oneway(*traffic_groups)
-
-    event = orders[orders["is_event"] == 1][TARGET]
-    normal = orders[orders["is_event"] == 0][TARGET]
-    event_test = stats.ttest_ind(event, normal, equal_var=False)
-
-    return [
+def test_hypotheses(delivery):
+    rainy = delivery[delivery["weather"].eq("Rainy")][TARGET]
+    clear = delivery[delivery["weather"].eq("Clear")][TARGET]
+    rain_test = stats.ttest_ind(rainy, clear, equal_var=False)
+    traffic_groups = [group[TARGET].values for _, group in delivery.groupby("traffic_level")]
+    traffic_test = stats.f_oneway(*traffic_groups)
+    experience = stats.pearsonr(delivery["courier_experience_yrs"], delivery[TARGET])
+    return pd.DataFrame([
         {
-            "test": "Rain vs dry delivery time",
+            "test": "Rainy vs clear delivery time",
             "method": "Welch two-sample t-test",
             "statistic": rain_test.statistic,
             "p_value": rain_test.pvalue,
-            "effect_min": rain.mean() - dry.mean(),
+            "effect_min": rainy.mean() - clear.mean(),
             "conclusion": "Statistically significant" if rain_test.pvalue < 0.05 else "Not significant",
         },
         {
-            "test": "Traffic density delivery time",
+            "test": "Traffic-level delivery time",
             "method": "One-way ANOVA",
-            "statistic": traffic_anova.statistic,
-            "p_value": traffic_anova.pvalue,
-            "effect_min": orders.groupby("traffic_density")[TARGET].mean().max() - orders.groupby("traffic_density")[TARGET].mean().min(),
-            "conclusion": "Statistically significant" if traffic_anova.pvalue < 0.05 else "Not significant",
+            "statistic": traffic_test.statistic,
+            "p_value": traffic_test.pvalue,
+            "effect_min": delivery.groupby("traffic_level")[TARGET].mean().max() - delivery.groupby("traffic_level")[TARGET].mean().min(),
+            "conclusion": "Statistically significant" if traffic_test.pvalue < 0.05 else "Not significant",
         },
         {
-            "test": "Event vs normal delivery time",
-            "method": "Welch two-sample t-test",
-            "statistic": event_test.statistic,
-            "p_value": event_test.pvalue,
-            "effect_min": event.mean() - normal.mean(),
-            "conclusion": "Statistically significant" if event_test.pvalue < 0.05 else "Not significant",
+            "test": "Courier experience relationship",
+            "method": "Pearson correlation",
+            "statistic": experience.statistic,
+            "p_value": experience.pvalue,
+            "effect_min": experience.statistic,
+            "conclusion": "Statistically significant" if experience.pvalue < 0.05 else "Not significant",
         },
-    ]
+    ])
 
 
-def build_executive_summary(kpis, area_metrics, event_metrics, risk, model_results):
-    worst_area = area_metrics.sort_values("avg_delivery_time_min", ascending=False).iloc[0]
-    event_row = event_metrics[event_metrics["period_type"] != "Normal Day"].sort_values("avg_delivery_time_min", ascending=False).iloc[0]
-    normal_row = event_metrics[event_metrics["period_type"] == "Normal Day"].iloc[0]
-    event_lift = 100 * (event_row["avg_delivery_time_min"] / normal_row["avg_delivery_time_min"] - 1)
-    critical_count = int((risk["risk_tier"] == "Critical").sum())
-    best_model = model_results.iloc[0]
-
-    return (
-        f"Hyderabad operations averaged {kpis['avg_delivery_time_min']:.1f} minutes with "
-        f"{kpis['on_time_rate_pct']:.1f}% of orders meeting the promise. "
-        f"{worst_area['restaurant_area']} is the highest-pressure locality at "
-        f"{worst_area['avg_delivery_time_min']:.1f} minutes, while {event_row['period_type']} periods "
-        f"increase delivery time by {event_lift:.1f}% versus normal days. "
-        f"{critical_count} restaurants currently require intervention, and the "
-        f"{best_model['model']} model explains {best_model['r2']:.1%} of delivery-time variation."
-    )
+def empirical_effects(delivery):
+    base = delivery[TARGET].mean()
+    weather = delivery.groupby("weather")[TARGET].mean().sub(
+        delivery.groupby("weather")[TARGET].mean().get("Clear", base)
+    ).to_dict()
+    traffic = delivery.groupby("traffic_level")[TARGET].mean().sub(
+        delivery.groupby("traffic_level")[TARGET].mean().get("Low", base)
+    ).to_dict()
+    time = delivery.groupby("time_of_day")[TARGET].mean().sub(
+        delivery.groupby("time_of_day")[TARGET].mean().get("Morning", base)
+    ).to_dict()
+    distance_slope = np.polyfit(delivery["distance_km"], delivery[TARGET], 1)[0]
+    preparation_slope = np.polyfit(delivery["preparation_time_min"], delivery[TARGET], 1)[0]
+    experience_slope = np.polyfit(delivery["courier_experience_yrs"], delivery[TARGET], 1)[0]
+    return {
+        "base_minutes": base,
+        "mean_distance_km": delivery["distance_km"].mean(),
+        "mean_preparation_min": delivery["preparation_time_min"].mean(),
+        "mean_experience_yrs": delivery["courier_experience_yrs"].mean(),
+        "distance_slope": distance_slope,
+        "preparation_slope": preparation_slope,
+        "experience_slope": experience_slope,
+        "weather_effects": weather,
+        "traffic_effects": traffic,
+        "time_effects": time,
+    }
 
 
 def main():
-    MODELS.mkdir(exist_ok=True)
     ANALYSIS.mkdir(exist_ok=True)
+    MODELS.mkdir(exist_ok=True)
     DASHBOARD_DATA.mkdir(parents=True, exist_ok=True)
 
-    orders = pd.read_csv(DATA / "orders.csv", keep_default_na=False)
-    restaurants = pd.read_csv(DATA / "restaurants.csv", keep_default_na=False)
+    delivery = pd.read_csv(DATA / "delivery_records.csv")
+    restaurants = pd.read_csv(DATA / "hyderabad_restaurants.csv")
+    best_name, model, metrics, importance = train_models(delivery)
+    tests = test_hypotheses(delivery)
 
-    kpis = {
-        "total_orders": int(len(orders)),
-        "avg_delivery_time_min": float(orders[TARGET].mean()),
-        "on_time_rate_pct": float(100 * orders["is_on_time"].mean()),
-        "avg_delay_min": float(orders["delay_min"].mean()),
-        "gross_order_value": float(orders["order_value"].sum()),
-    }
-    area_metrics = orders.groupby("restaurant_area").agg(
-        orders=("order_id", "count"),
+    area_metrics = restaurants.groupby("area").agg(
+        restaurants=("restaurant_id", "count"),
+        avg_delivery_time_min=("delivery_time_min", "mean"),
+        avg_rating=("avg_rating", "mean"),
+        median_price=("price", "median"),
+        total_reviews=("total_ratings", "sum"),
+        priority_restaurants=("attention_tier", lambda values: int((values == "Priority").sum())),
+    ).reset_index()
+    area_metrics = area_metrics[area_metrics["restaurants"] >= 5].sort_values(
+        ["avg_delivery_time_min", "restaurants"], ascending=[False, False]
+    )
+
+    weather_metrics = delivery.groupby("weather").agg(
+        records=("order_id", "count"),
         avg_delivery_time_min=(TARGET, "mean"),
-        p90_delivery_time_min=(TARGET, lambda values: values.quantile(0.9)),
-        on_time_rate_pct=("is_on_time", lambda values: 100 * values.mean()),
-        avg_delay_min=("delay_min", "mean"),
-        avg_order_value=("order_value", "mean"),
-        latitude=("restaurant_latitude", "mean"),
-        longitude=("restaurant_longitude", "mean"),
+        under_60_rate_pct=("under_60_min", lambda values: 100 * values.mean()),
+    ).reset_index()
+    traffic_metrics = delivery.groupby("traffic_level").agg(
+        records=("order_id", "count"),
+        avg_delivery_time_min=(TARGET, "mean"),
+        under_60_rate_pct=("under_60_min", lambda values: 100 * values.mean()),
+    ).reset_index()
+    time_metrics = delivery.groupby("time_of_day").agg(
+        records=("order_id", "count"),
+        avg_delivery_time_min=(TARGET, "mean"),
     ).reset_index()
 
-    event_metrics = orders.assign(
-        period_type=orders["event_type"].replace({"None": "Normal Day"})
-    ).groupby("period_type").agg(
-        orders=("order_id", "count"),
-        avg_delivery_time_min=(TARGET, "mean"),
-        on_time_rate_pct=("is_on_time", lambda values: 100 * values.mean()),
-        avg_delay_min=("delay_min", "mean"),
-    ).reset_index()
-
-    hourly_metrics = orders.groupby(["restaurant_area", "order_hour"]).agg(
-        orders=("order_id", "count"),
-        avg_delivery_time_min=(TARGET, "mean"),
-        on_time_rate_pct=("is_on_time", lambda values: 100 * values.mean()),
-    ).reset_index()
-
-    weather_metrics = orders.groupby(["weather_condition", "traffic_density"]).agg(
-        orders=("order_id", "count"),
-        avg_delivery_time_min=(TARGET, "mean"),
-        avg_delay_min=("delay_min", "mean"),
-    ).reset_index()
-
-    risk = score_restaurant_risk(orders, restaurants)
-    best_name, best_model, model_results, importance = train_models(orders)
-    tests = statistical_tests(orders)
-
-    joblib.dump(best_model, MODELS / "delivery_time_model.joblib")
-    risk.to_csv(ANALYSIS / "restaurant_risk_scores.csv", index=False)
-    area_metrics.to_csv(ANALYSIS / "area_performance.csv", index=False)
-    model_results.to_csv(ANALYSIS / "model_metrics.csv", index=False)
+    attention = restaurants.sort_values("attention_score", ascending=False)
+    joblib.dump(model, MODELS / "delivery_time_model.joblib")
+    metrics.to_csv(ANALYSIS / "model_metrics.csv", index=False)
     importance.to_csv(ANALYSIS / "feature_importance.csv", index=False)
-    pd.DataFrame(tests).to_csv(ANALYSIS / "statistical_tests.csv", index=False)
+    tests.to_csv(ANALYSIS / "statistical_tests.csv", index=False)
+    attention.to_csv(ANALYSIS / "restaurant_attention_scores.csv", index=False)
+    area_metrics.to_csv(ANALYSIS / "area_performance.csv", index=False)
 
-    summary = build_executive_summary(kpis, area_metrics, event_metrics, risk, model_results)
+    top_area = area_metrics.iloc[0]
+    top_restaurant = attention.iloc[0]
+    summary = (
+        f"The delivery benchmark contains {len(delivery):,} records and averages "
+        f"{delivery[TARGET].mean():.1f} minutes. {best_name} achieved a holdout R2 of "
+        f"{metrics.iloc[0]['r2']:.3f} with {metrics.iloc[0]['mae']:.1f}-minute MAE. "
+        f"Among {len(restaurants):,} real Hyderabad restaurant listings, {top_area['area']} "
+        f"has the highest average listed delivery time among areas with at least five restaurants. "
+        f"{top_restaurant['name']} currently has the highest operational attention score, driven by "
+        f"listed delivery time, rating, and review confidence."
+    )
     (ROOT / "ai_insights" / "executive_summary.txt").write_text(summary, encoding="utf-8")
 
-    dashboard_payload = {
+    payload = {
         "metadata": {
             "city": "Hyderabad",
-            "generated_from": "Reproducible synthetic operations data",
+            "data_type": "Real public Kaggle datasets",
+            "delivery_records": len(delivery),
+            "hyderabad_restaurants": len(restaurants),
             "best_model": best_name,
+            "tracks_are_separate": True,
         },
-        "kpis": {key: round(value, 2) for key, value in kpis.items()},
+        "kpis": {
+            "delivery_records": len(delivery),
+            "hyderabad_restaurants": len(restaurants),
+            "avg_delivery_time_min": delivery[TARGET].mean(),
+            "under_60_rate_pct": 100 * delivery["under_60_min"].mean(),
+            "priority_restaurants": int((restaurants["attention_tier"] == "Priority").sum()),
+        },
         "executive_summary": summary,
-        "area_metrics": round_records(area_metrics),
-        "event_metrics": round_records(event_metrics),
-        "hourly_metrics": round_records(hourly_metrics),
-        "weather_metrics": round_records(weather_metrics),
-        "restaurant_risk": round_records(risk.head(30)),
-        "model_metrics": round_records(model_results, 4),
-        "feature_importance": round_records(importance, 4),
-        "statistical_tests": [
-            {
-                **item,
-                "statistic": round(float(item["statistic"]), 4),
-                "p_value": float(item["p_value"]),
-                "effect_min": round(float(item["effect_min"]), 2),
-            }
-            for item in tests
+        "area_metrics": records(area_metrics.head(25)),
+        "weather_metrics": records(weather_metrics),
+        "traffic_metrics": records(traffic_metrics),
+        "time_metrics": records(time_metrics),
+        "restaurant_attention": records(attention.head(50)),
+        "model_metrics": records(metrics, 4),
+        "feature_importance": records(importance, 4),
+        "statistical_tests": records(tests, 6),
+        "simulator": empirical_effects(delivery),
+        "limitations": [
+            "Delivery records do not contain city, restaurant, date, or event identifiers.",
+            "Restaurant listings and delivery records are not joined at row level.",
+            "The operational attention score is a heuristic, not a churn prediction.",
         ],
-        "simulator": {
-            "base_minutes": round(float(orders[TARGET].mean()), 2),
-            "rain_penalty": 5.8,
-            "heavy_rain_penalty": 11.4,
-            "peak_penalty": 5.2,
-            "event_penalty": 6.9,
-            "partner_reduction_per_person": 1.35,
-            "minimum_minutes": 18,
-        },
     }
-    (DASHBOARD_DATA / "pulse_data.json").write_text(
-        json.dumps(dashboard_payload, indent=2),
-        encoding="utf-8",
-    )
+    (DASHBOARD_DATA / "pulse_data.json").write_text(json.dumps(payload, indent=2), encoding="utf-8")
     print(json.dumps({
+        "delivery_records": len(delivery),
+        "hyderabad_restaurants": len(restaurants),
         "best_model": best_name,
-        "model_r2": round(float(model_results.iloc[0]["r2"]), 4),
-        "model_mae": round(float(model_results.iloc[0]["mae"]), 2),
-        "critical_restaurants": int((risk["risk_tier"] == "Critical").sum()),
-        "summary": summary,
+        "r2": round(float(metrics.iloc[0]["r2"]), 4),
+        "mae": round(float(metrics.iloc[0]["mae"]), 2),
+        "priority_restaurants": int((restaurants["attention_tier"] == "Priority").sum()),
     }, indent=2))
 
 
