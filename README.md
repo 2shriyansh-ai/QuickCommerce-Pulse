@@ -132,9 +132,9 @@ Four modules — all wired to real analysis output, no mocked data.
 
 ## 🌐 Live Deployment
 
-This repository is ready to deploy on Vercel.
+Live app: **https://quick-commerce-pulse.vercel.app/**
 
-Use these settings:
+Deployed on Vercel using these settings:
 
 ```text
 Framework Preset: Vite
@@ -142,8 +142,6 @@ Root Directory: dashboard
 Build Command: npm run build
 Output Directory: dist
 ```
-
-After deployment, add the Vercel URL here and on your resume.
 
 ---
 
