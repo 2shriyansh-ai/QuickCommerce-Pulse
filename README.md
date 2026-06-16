@@ -130,6 +130,23 @@ Four modules — all wired to real analysis output, no mocked data.
 
 ---
 
+## 🌐 Live Deployment
+
+This repository is ready to deploy on Vercel.
+
+Use these settings:
+
+```text
+Framework Preset: Vite
+Root Directory: dashboard
+Build Command: npm run build
+Output Directory: dist
+```
+
+After deployment, add the Vercel URL here and on your resume.
+
+---
+
 ## 📁 Structure
 
 ```
